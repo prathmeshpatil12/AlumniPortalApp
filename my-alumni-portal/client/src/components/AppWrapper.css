@@ -1,0 +1,11 @@
+.Welcome {
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.logoutbtn {
+    color: white;
+    background-color: darkred;
+    font-size: 1.2em;
+    float: right;
+}
