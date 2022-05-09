@@ -3,16 +3,44 @@ import {React} from 'react';
 import { AppWrapper } from './components/AppWrapper';
 import Login from './components/Login/Login';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import AdminDashboard from './components/Admin/AdminDashboard/AdminDashboard';
+import StudentDashboard from './components/Student/StudentDashboard/StudentDashboard';
+import AlumniDashboard from './components/Alumni/AlumniDashboard/AlumniDashboard';
+import CoordinatorDashboard from './components/Coordinator/CoordinatorDashboard/CoordinatorDashboard';
+import AddStudent from './components/Student/StudentCRUD/AddStudent';
+import ViewStudent from './components/Student/StudentCRUD/ViewStudent';
+import RemoveStudent from './components/Student/StudentCRUD/RemoveStudent';
+import TransferStudentToAlumni from './components/Student/StudentCRUD/TransferStudentToAlumni';
+import AddAlumni from './components/Alumni/AlumniCRUD/AddAlumni';
+import ViewAlumni from './components/Alumni/AlumniCRUD/ViewAlumni';
+import RemoveAlumni from './components/Alumni/AlumniCRUD/RemoveAlumni';
+import AddCoordinator from './components/Coordinator/CoordinatorCRUD/AddCoordinator';
+import ViewCoordinator from './components/Coordinator/CoordinatorCRUD/ViewCoordinator';
+import RemoveCoordinator from './components/Coordinator/CoordinatorCRUD/RemoveCoordinator';
 
 function App() {
   return (
     <div className="wrapper">
-      <h1>Alumni Portal</h1>
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<AppWrapper />} />
+          <Route exact path="*" element={<AppWrapper />} />
           <Route exact path="/login" element={<Login />} />
+
+          <Route exact path="/adminDashboard" element={<AdminDashboard />}></Route>
+          <Route exact path="/studentDashboard" element={<StudentDashboard />}></Route>
+          <Route exact path="/alumniDashboard" element={<AlumniDashboard />}></Route>
+          <Route exact path="/coordinatorDashboard" element={<CoordinatorDashboard />}></Route>
+          <Route exact path="/addStudent" element={<AddStudent/>}></Route>
+          <Route exact path="/viewStudents" element={<ViewStudent/>}></Route>
+          <Route exact path="/removeStudent" element={<RemoveStudent/>}></Route>
+          <Route exact path="/transferStudent" element={<TransferStudentToAlumni/>}></Route>
+          <Route exact path="/addAlumni" element={<AddAlumni/>}></Route>
+          <Route exact path="/viewAlumni" element={<ViewAlumni/>}></Route>
+          <Route exact path="/removeAlumni" element={<RemoveAlumni/>}></Route>
+          <Route exact path="/addCoordinator" element={<AddCoordinator/>}></Route>
+          <Route exact path="/viewCoordinators" element={<ViewCoordinator/>}></Route>
+          <Route exact path="/removeCoordinator" element={<RemoveCoordinator/>}></Route>
 
         </Routes>
       </BrowserRouter>

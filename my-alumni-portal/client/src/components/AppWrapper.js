@@ -1,6 +1,5 @@
 import { React, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
-import './AppWrapper.css';
 
 
 export const AppWrapper = () => {
@@ -13,19 +12,25 @@ export const AppWrapper = () => {
         }
     });
 
-    const logout = () => {
-        localStorage.removeItem("PRN");
-        localStorage.removeItem("Name");
-        localStorage.removeItem("Type");
-        navigate('/login');
+    const goDashboard = () => {
+        document.getElementById('goToDashboard').style.visibility='hidden';
+        document.getElementById('completeProfile').style.visibility='hidden';
+        if(localStorage.getItem("Type")=="Admin") {
+            navigate('/adminDashboard');
+        } else if (localStorage.getItem("Type")=="Student") {
+            navigate('/studentDashboard');
+        } else if (localStorage.getItem("Type")=="Alumni") {
+            navigate("/alumniDashboard");
+        } else {
+            navigate("/coordinatorDashboard");
+        }
     }
 
 
     return (
-        <>
-        <button className='logoutbtn' onClick={logout}>Logout</button>
-        <div className='Welcome'>Welcome, {localStorage.getItem("Name")}</div>
-        
+        <>  
+        <button id='goToDashboard' onClick={goDashboard}>Go to Dashboard</button>
+        <button id='completeProfile'>Complete your profile</button>
         </>
     )
 }

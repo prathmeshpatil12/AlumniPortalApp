@@ -39,6 +39,7 @@ function Login() {
         <p>PRN</p>
         <input type="text" onChange={e => setPRN(e.target.value)}/>
       </label>
+      <br></br>
       <label>
         <p>Password</p>
         <input type="password" onChange={e => setPassword(e.target.value)}/>
