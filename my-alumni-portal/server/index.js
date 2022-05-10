@@ -230,3 +230,118 @@ app.delete("/removeCoordinator/:id", (req, res) => {
     }
   });
 });
+
+
+// Everyone opearates on Internship Data
+// Admin adds Coordinator
+app.post("/addInternship", (req, res) => {
+  const company_name = req.body.company_name;
+  const position = req.body.position;
+  const eligible_batches = req.body.eligible_batches;
+  const eligible_branches = req.body.eligible_branches;
+  const experience_required = req.body.experience_required;
+  const date_posted = req.body.date_posted;
+  const registration_link = req.body.registration_link;
+
+  db.query("INSERT INTO `Internship` (`internship_id`, `company_name`, `position`, `eligible_batches`, `eligible_branches`, `experience_required`, `date_posted`, `registration_link`) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)", 
+  [company_name, position, eligible_batches, eligible_branches, experience_required, date_posted, registration_link],
+  (err, result) => {
+    if(err) {
+      console.log(err);
+    } else {
+      res.send("Values Inserted");
+    }
+  })
+
+});
+
+
+// Admin reads Coordinator data
+app.get("/getInternships", (req, res) => {
+  db.query("SELECT * FROM Internship", (err, result) => {
+    if(err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+
+
+
+// Everyone opearates on Job Data
+// Alumni, Coordinator adds Job
+app.post("/addJob", (req, res) => {
+  const company_name = req.body.company_name;
+  const position = req.body.position;
+  const eligible_batches = req.body.eligible_batches;
+  const eligible_branches = req.body.eligible_branches;
+  const experience_required = req.body.experience_required;
+  const date_posted = req.body.date_posted;
+  const registration_link = req.body.registration_link;
+
+  db.query("INSERT INTO `Job` (`job_id`, `company_name`, `position`, `eligible_batches`, `eligible_branches`, `experience_required`, `date_posted`, `registration_link`) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)", 
+  [company_name, position, eligible_batches, eligible_branches, experience_required, date_posted, registration_link],
+  (err, result) => {
+    if(err) {
+      console.log(err);
+    } else {
+      res.send("Values Inserted");
+    }
+  })
+
+});
+
+
+// Everyone reads Job data
+app.get("/getJobs", (req, res) => {
+  db.query("SELECT * FROM Job", (err, result) => {
+    if(err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+
+
+// Everyone opearates on Event Data
+// Coordinator adds Event
+app.post("/addEvent", (req, res) => {
+  const event_name = req.body.event_name;
+  const description = req.body.description;
+  const nature_of_event = req.body.nature_of_event;
+  const organizer = req.body.organizer;
+  const date_of_event = req.body.date_of_event;
+  const starts_at = req.body.starts_at;
+  const ends_at = req.body.ends_at;
+  const venue = req.body.venue;
+  const mode_of_event = req.body.mode_of_event;
+  const registration_link = req.body.registration_link;
+
+  db.query("INSERT INTO `Events` (`event_id`, `event_name`, `description`, `nature_of_event`, `organizer`, `date_of_event`, `starts_at`, `ends_at`, `venue`, `mode_of_event`, `registration_link`) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)", 
+  [event_name, description, nature_of_event, organizer, date_of_event, starts_at, ends_at, venue, mode_of_event, registration_link],
+  (err, result) => {
+    if(err) {
+      console.log(err);
+    } else {
+      res.send("Values Inserted");
+    }
+  })
+
+
+});
+
+
+// Everyone reads Event data
+app.get("/getEvents", (req, res) => {
+  db.query("SELECT * FROM Events", (err, result) => {
+    if(err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});

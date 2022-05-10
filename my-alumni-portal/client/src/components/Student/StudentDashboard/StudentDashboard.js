@@ -20,37 +20,23 @@ function StudentDashboard() {
   
     return (
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-        <Container>
-        <Navbar.Brand href="#home">Alumni Portal</Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
-            <NavDropdown title="Student" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">View Students</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Add Students</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Remove Student</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">Transfer Students to Alumni</NavDropdown.Item>
-            </NavDropdown>
-
-            <NavDropdown title="Alumni" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">View Alumnis</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Add Alumni</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Remove Alumni</NavDropdown.Item>
-            </NavDropdown>
-
-            <NavDropdown title="Coordinator" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">View Coordinators</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Add Coordinator</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Remove Coordinator</NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
-          <Nav>
-            <Nav.Link onClick={logout}>Logout</Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-        </Container>
-      </Navbar>
+      <Container>
+      <Navbar.Brand href="/">Alumni Portal</Navbar.Brand>
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Collapse id="responsive-navbar-nav">
+        <Nav className="me-auto">
+          <Nav.Link href="#features">Chat System</Nav.Link>
+          <Nav.Link href="/viewInternships">Internship Opportunities</Nav.Link>
+          <Nav.Link href="/viewJobs">Job Opportunities</Nav.Link>
+          <Nav.Link href="/viewEvents">Events and Workshops</Nav.Link>
+        </Nav>
+        <Nav>
+          <Nav.Link href="#deets">My Profile</Nav.Link>
+          <Nav.Link onClick={logout}>Logout</Nav.Link>
+        </Nav>
+      </Navbar.Collapse>
+      </Container>
+    </Navbar>
     )
 }
 

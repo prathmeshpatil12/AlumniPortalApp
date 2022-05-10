@@ -18,6 +18,12 @@ import RemoveAlumni from './components/Alumni/AlumniCRUD/RemoveAlumni';
 import AddCoordinator from './components/Coordinator/CoordinatorCRUD/AddCoordinator';
 import ViewCoordinator from './components/Coordinator/CoordinatorCRUD/ViewCoordinator';
 import RemoveCoordinator from './components/Coordinator/CoordinatorCRUD/RemoveCoordinator';
+import ViewInternships from './components/Internship/InternshipCRUD/ViewInternships';
+import ViewJobs from './components/JobOpportunities/JobOpportunitiesCRUD/ViewJobs';
+import ViewEvents from './components/EventAndWorkshops/EventCRUD/ViewEvents';
+import AddInternship from './components/Internship/InternshipCRUD/AddInternship';
+import AddJob from './components/JobOpportunities/JobOpportunitiesCRUD/AddJob';
+import AddEvent from './components/EventAndWorkshops/EventCRUD/AddEvent';
 
 function App() {
   return (
@@ -41,6 +47,12 @@ function App() {
           <Route exact path="/addCoordinator" element={<AddCoordinator/>}></Route>
           <Route exact path="/viewCoordinators" element={<ViewCoordinator/>}></Route>
           <Route exact path="/removeCoordinator" element={<RemoveCoordinator/>}></Route>
+          <Route exact path="/viewInternships" element={<ViewInternships />}></Route>
+          <Route exact path="/viewJobs" element={<ViewJobs />}></Route>
+          <Route exact path="/viewEvents" element={<ViewEvents />}></Route>
+          <Route exact path='/addInternship' element={<AddInternship />}></Route>
+          <Route exact path='/addJob' element={<AddJob />}></Route>
+          <Route exact path='/addEvent' element={<AddEvent />}></Route>
 
         </Routes>
       </BrowserRouter>
