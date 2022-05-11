@@ -23,20 +23,37 @@ function AddEvent() {
         let date = new Date();
         date = date.toISOString().slice(0, 19).replace('T', ' ');
         // setDatePosted(date)
+        let doe = new Date(date_of_event.replace(/-/g, '/').replace('T', ' '));
+        doe.setHours(doe.getHours() + 5);
+        doe.setMinutes(doe.getMinutes() + 30);
+        doe = doe.toISOString().slice(0, 19).replace('T', ' ');
+        let sa = new Date(starts_at.replace(/-/g, '/').replace('T', ' '));
+        let ea = new Date(ends_at.replace(/-/g, '/').replace('T', ' '));
+        // doe = doe.toISOString().slice(0, 19).replace('T', ' ');
+        sa.setHours(sa.getHours()+5);
+        sa.setMinutes(sa.getMinutes()+30);
+        ea.setHours(ea.getHours()+5);
+        ea.setMinutes(ea.getMinutes()+30);
+        sa = sa.toISOString().slice(0, 19).replace('T', ' ');
+        sa = sa.slice(11, 19);
+        ea = ea.toISOString().slice(0, 19).replace('T', ' ');
+        ea = ea.slice(11, 19);
         
         let obj = {
             event_name: event_name,
             description: description,
             nature_of_event: nature_of_event,
             organizer: organizer,
-            date_of_event: date_of_event,
-            starts_at: starts_at,
-            ends_at: ends_at,
+            date_of_event: doe,
+            starts_at: sa,
+            ends_at: ea,
             venue: venue,
             mode_of_event: mode_of_event,
             registration_link: registration_link
         };
 
+        console.log(obj);
+        
         const headers = {
             'Content-Type':'application/json'
         }
@@ -88,17 +105,17 @@ function AddEvent() {
                 <br></br>
                 <label>
                     <p>Date of Event</p>
-                    <input type="text" onChange={e => setDateOfEvent(e.target.value)}/>
+                    <input type="datetime-local" onChange={e => setDateOfEvent(e.target.value)}/>
                 </label>
                 <br></br>
                 <label>
                     <p>Start Time of Event</p>
-                    <input type="text" onChange={e => setStartsAt(e.target.value)}/>
+                    <input type="datetime-local" onChange={e => setStartsAt(e.target.value)}/>
                 </label>
                 <br></br>
                 <label>
                     <p>End Time of Event</p>
-                    <input type="text" onChange={e => setEndsAt(e.target.value)}/>
+                    <input type="datetime-local" onChange={e => setEndsAt(e.target.value)}/>
                 </label>
                 <br></br>
                 <label>

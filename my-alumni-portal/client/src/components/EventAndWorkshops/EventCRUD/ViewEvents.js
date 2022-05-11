@@ -12,6 +12,10 @@ function ViewEvents() {
     let navigate = useNavigate();
 
     useEffect(() => {
+        if(localStorage.getItem("Type")!="Coordinator") {
+            document.getElementById('addbtn').style.visibility="hidden";
+        }
+
         Axios.get('http://localhost:3001/getEvents').then((response) => {
             const someList = response.data;
             setEventList(someList);

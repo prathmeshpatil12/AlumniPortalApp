@@ -310,18 +310,50 @@ app.get("/getJobs", (req, res) => {
 // Everyone opearates on Event Data
 // Coordinator adds Event
 app.post("/addEvent", (req, res) => {
-  const event_name = req.body.event_name;
-  const description = req.body.description;
-  const nature_of_event = req.body.nature_of_event;
-  const organizer = req.body.organizer;
-  const date_of_event = req.body.date_of_event;
-  const starts_at = req.body.starts_at;
-  const ends_at = req.body.ends_at;
-  const venue = req.body.venue;
-  const mode_of_event = req.body.mode_of_event;
-  const registration_link = req.body.registration_link;
+  let event_name = req.body.event_name;
+  let description = req.body.description;
+  let nature_of_event = req.body.nature_of_event;
+  let organizer = req.body.organizer;
+  let date_of_event = req.body.date_of_event;
+  let starts_at = req.body.starts_at;
+  let ends_at = req.body.ends_at;
+  let venue = req.body.venue;
+  let mode_of_event = req.body.mode_of_event;
+  let registration_link = req.body.registration_link;
 
-  db.query("INSERT INTO `Events` (`event_id`, `event_name`, `description`, `nature_of_event`, `organizer`, `date_of_event`, `starts_at`, `ends_at`, `venue`, `mode_of_event`, `registration_link`) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)", 
+  if(nature_of_event=="") {
+    nature_of_event="NULL";
+  }
+
+  if(organizer=="") {
+    organizer="NULL";
+  }
+
+  if(date_of_event=="") {
+    date_of_event="NULL";
+  }
+
+  if(starts_at=="") {
+    starts_at="NULL";
+  }
+
+  if(ends_at=="") {
+    ends_at="NULL";
+  }
+
+  if(venue=="") {
+    venue="NULL";
+  }
+
+  if(mode_of_event=="") {
+    mode_of_event="NULL";
+  }
+
+  if(registration_link=="") {
+    registration_link="NULL";
+  }
+
+  db.query("INSERT INTO `Events` (`event_id`, `event_name`, `description`, `nature_of_event`, `organizer`, `date_of_event`, `starts_at`, `ends_at`, `venue`, `mode_of_event`, `registration_link`) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", 
   [event_name, description, nature_of_event, organizer, date_of_event, starts_at, ends_at, venue, mode_of_event, registration_link],
   (err, result) => {
     if(err) {
