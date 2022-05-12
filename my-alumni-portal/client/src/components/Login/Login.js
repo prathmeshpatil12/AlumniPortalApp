@@ -13,6 +13,12 @@ function Login() {
     e.preventDefault();
     let toReq = 'http://localhost:3001/loginDetails/' + PRN;
 
+    //Kshitij-Delete Later
+    // localStorage.setItem("PRN", 1819000286);
+    // localStorage.setItem("Name", "Kshitij Sangar");
+    // localStorage.setItem("Type", "Student");
+    // navigate('/');
+
     Axios.get(toReq).then((response) => {
       const name = response.data[0].name;
       const type = response.data[0].type;
