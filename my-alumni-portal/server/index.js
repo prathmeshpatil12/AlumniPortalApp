@@ -377,3 +377,49 @@ app.get("/getEvents", (req, res) => {
     }
   });
 });
+
+
+
+// Everyone Change Password
+app.put('/updateLoginDetails', (req, res) => {
+  const id = req.body.PRN;
+  const password = req.body.password;
+  db.query("UPDATE LoginDetails SET password = ? WHERE PRN = ?", 
+  [password, id],
+  (err, result) => {
+    if(err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  }
+  )
+})
+
+
+// Student updates details
+app.put('/updateStudentDetail', (req, res) => {
+  const id = req.body.PRN;
+  const name = req.body.name;
+  let date_of_birth = req.body.date_of_birth==''?'NULL':req.body.date_of_birth;
+  let gender = req.body.gender==''?'NULL':req.body.gender;
+  let year_of_admission = req.body.year_of_admission==''?'NULL':req.body.year_of_admission;
+  let department = req.body.department==''?'NULL':req.body.department;
+  let current_study_year = (req.body.current_study_year=='' || req.body.current_study_year==undefined)?'NULL':req.body.current_study_year;
+  let passout_year = (req.body.passout_year=='' || req.body.passout_year==undefined)?'NULL':req.body.passout_year;
+  let contact_number = req.body.contact_number==''?'NULL':req.body.contact_number;
+  let email_id = req.body.email_id==''?'NULL':req.body.email_id;
+  let linkdin_profile = req.body.linkdin_profile==''?'NULL':req.body.linkdin_profile;
+  // console.log(date_of_birth, gender, year_of_admission, department, current_study_year, passout_year, contact_number, email_id, linkdin_profile);
+
+  db.query("UPDATE Student SET date_of_birth=?, gender=?, year_of_admission=?, department=?, current_study_year=?, passout_year=?, contact_number=?, email_id=?, linkdin_profile=? WHERE PRN = ?", 
+  [date_of_birth, gender, year_of_admission, department, current_study_year, passout_year, contact_number, email_id, linkdin_profile, id],
+  (err, result) => {
+    if(err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  }
+  )
+})

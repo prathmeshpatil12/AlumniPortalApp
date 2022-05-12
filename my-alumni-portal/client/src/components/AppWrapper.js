@@ -12,9 +12,14 @@ export const AppWrapper = () => {
         }
     });
 
+    const changePasswd = () => {
+        navigate('/changePassword');
+    }
+
     const goDashboard = () => {
         document.getElementById('goToDashboard').style.visibility='hidden';
         document.getElementById('completeProfile').style.visibility='hidden';
+        document.getElementById('changePassword').style.visibility='hidden';
         if(localStorage.getItem("Type")=="Admin") {
             navigate('/adminDashboard');
         } else if (localStorage.getItem("Type")=="Student") {
@@ -26,11 +31,25 @@ export const AppWrapper = () => {
         }
     }
 
+    const updateProfile = () => {
+        document.getElementById('goToDashboard').style.visibility='hidden';
+        document.getElementById('completeProfile').style.visibility='hidden';
+        if(localStorage.getItem("Type")=="Admin") {
+            navigate('/adminDashboard');
+        } else if (localStorage.getItem("Type")=="Student") {
+            navigate('/updateStudentProfile');
+        } else if (localStorage.getItem("Type")=="Alumni") {
+            navigate("/alumniDashboard");
+        } else {
+            navigate("/coordinatorDashboard");
+        }
+    }
 
     return (
         <>  
         <button id='goToDashboard' onClick={goDashboard}>Go to Dashboard</button>
-        <button id='completeProfile'>Complete your profile</button>
+        <button id='completeProfile' onClick={updateProfile}>Complete your profile</button>
+        <button id='changePassword' onClick={changePasswd}>Change your password</button>
         </>
     )
 }
