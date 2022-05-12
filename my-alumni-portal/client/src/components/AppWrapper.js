@@ -34,14 +34,15 @@ export const AppWrapper = () => {
     const updateProfile = () => {
         document.getElementById('goToDashboard').style.visibility='hidden';
         document.getElementById('completeProfile').style.visibility='hidden';
+        document.getElementById('changePassword').style.visibility='hidden';
         if(localStorage.getItem("Type")=="Admin") {
             navigate('/adminDashboard');
         } else if (localStorage.getItem("Type")=="Student") {
             navigate('/updateStudentProfile');
         } else if (localStorage.getItem("Type")=="Alumni") {
-            navigate("/alumniDashboard");
+            navigate("/updateAlumniProfile");
         } else {
-            navigate("/coordinatorDashboard");
+            navigate("/updateCoordinatorProfile");
         }
     }
 

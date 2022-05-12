@@ -31,7 +31,7 @@ function CoordinatorDashboard() {
           <Nav.Link href="/viewEvents">Events and Workshops</Nav.Link>
         </Nav>
         <Nav>
-          <Nav.Link href="#deets">My Profile</Nav.Link>
+          <Nav.Link href="/updateCoordinatorProfile">My Profile</Nav.Link>
           <Nav.Link onClick={logout}>Logout</Nav.Link>
         </Nav>
       </Navbar.Collapse>

@@ -26,6 +26,8 @@ import AddJob from './components/JobOpportunities/JobOpportunitiesCRUD/AddJob';
 import AddEvent from './components/EventAndWorkshops/EventCRUD/AddEvent';
 import ChangePassword from './components/Profiles/PasswordChange/ChangePassword';
 import UpdateStudentProfile from './components/Profiles/ProfileChange/UpdateStudentProfile';
+import UpdateAlumniProfile from './components/Profiles/ProfileChange/UpdateAlumniProfile';
+import UpdateCoordinatorProfile from './components/Profiles/ProfileChange/UpdateCoordinatorProfile';
 
 function App() {
   return (
@@ -57,6 +59,8 @@ function App() {
           <Route exact path='/addJob' element={<AddJob />}></Route>
           <Route exact path='/addEvent' element={<AddEvent />}></Route>
           <Route exact path='/updateStudentProfile' element={<UpdateStudentProfile />}></Route>
+          <Route exact path='/updateAlumniProfile' element={<UpdateAlumniProfile />}></Route>
+          <Route exact path='/updateCoordinatorProfile' element={<UpdateCoordinatorProfile />}></Route>
 
         </Routes>
       </BrowserRouter>

@@ -423,3 +423,50 @@ app.put('/updateStudentDetail', (req, res) => {
   }
   )
 })
+
+
+// Alumni updates details
+app.put('/updateAlumniDetail', (req, res) => {
+  const id = req.body.PRN;
+  const name = req.body.name;
+  let current_company = req.body.current_company==''?'NULL':req.body.current_company;
+  let department = req.body.department==''?'NULL':req.body.department;
+  let passout_year = (req.body.passout_year=='' || req.body.passout_year==undefined)?'NULL':req.body.passout_year;
+  let contact_number = req.body.contact_number==''?'NULL':req.body.contact_number;
+  let email_id = req.body.email_id==''?'NULL':req.body.email_id;
+  let linkdin_profile = req.body.linkdin_profile==''?'NULL':req.body.linkdin_profile;
+  console.log(name, current_company, department, passout_year, contact_number, email_id, linkdin_profile);
+
+  db.query("UPDATE Alumni SET name=?, current_company=?, passout_year=?, department=?, contact_number=?, email_id=?, linkdin_profile=? WHERE PRN = ?", 
+  [name, current_company, passout_year, department, contact_number, email_id, linkdin_profile, id],
+  (err, result) => {
+    if(err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  }
+  )
+})
+
+
+// Coordinator updates details
+app.put('/updateCoordinatorDetail', (req, res) => {
+  const id = req.body.PRN;
+  const name = req.body.name;
+  let department = req.body.department==''?'NULL':req.body.department;
+  let contact_number = req.body.contact_number==''?'NULL':req.body.contact_number;
+  let email_id = req.body.email_id==''?'NULL':req.body.email_id;
+  console.log(name, department, contact_number, email_id);
+
+  db.query("UPDATE Coordinator SET name=?, department=?, contact_number=?, email_id=? WHERE username = ?", 
+  [name, department, contact_number, email_id, id],
+  (err, result) => {
+    if(err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  }
+  )
+})
