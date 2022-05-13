@@ -2,6 +2,9 @@ import { React, useState} from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@chakra-ui/react';
+import Form from 'react-bootstrap/Form';
+import { Button, ButtonGroup } from '@chakra-ui/react';
+import '../../Internship/InternshipCRUD/AddInternship.css';
 
 
 function AddAlumni() {
@@ -66,24 +69,39 @@ function AddAlumni() {
 
     return (
         <>
-        <h2>AddAlumni</h2>
-        <form onSubmit={addAlumni}>
-            <label>
-                <p>PRN</p>
-                <input type="text" onChange={e => setPRN(e.target.value)}/>
-            </label>
-            <br></br>
-            <label>
-                <p>Name</p>
-                <input type="text" onChange={e => setName(e.target.value)}/>
-            </label>
-            <div>
-                <button className='submitbtn' type="submit">Add Alumni</button>
-            </div>
-        </form>
 
-        <h3 id='result'></h3>
-        <button onClick={goToDashboard}>Go back to Dashboard</button>
+<div className="box-form" id='studentboxform'>
+
+
+
+<div className="right">
+    <h2 id='h2tag'>Add Alumini </h2><br />
+    <Form onSubmit={addAlumni}>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label><b>PRN</b></Form.Label>
+            <Form.Control type="text" onChange={e => setPRN(e.target.value)} />
+
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label><b>Name</b></Form.Label>
+            <Form.Control type="text" onChange={e => setName(e.target.value)} />
+        </Form.Group>
+
+        
+
+        <div className='button'>
+            <div id='wrongIDorPass'></div>
+            <Button variant="success" className='submitbtn' type="submit">Add Alumini</Button>{' '}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Button variant="primary" onClick={goToDashboard}>Dashboard</Button>{' '}
+            <br />
+
+
+        </div>
+    </Form>
+    <br />
+    <br />
+</div></div>
+        
         </>
     )
 }

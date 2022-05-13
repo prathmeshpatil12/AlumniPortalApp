@@ -1,6 +1,9 @@
-import { React, useState} from 'react';
+import { React, useState } from 'react';
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Form from 'react-bootstrap/Form';
+import { Button, ButtonGroup } from '@chakra-ui/react';
+import '../../Internship/InternshipCRUD/AddInternship.css';
 
 function RemoveCoordinator() {
 
@@ -23,22 +26,30 @@ function RemoveCoordinator() {
 
     return (
         <>
-            <h2>Remove Coordinator</h2>
-            <br />
-            <button onClick={goToDashboard}>Go To Dashboard</button>
-            <br />
-            <form onSubmit={removeCoordinator}>
-                <label>
-                    <p>Username</p>
-                    <input type="text" onChange={e => setUsername(e.target.value)}/>
-                </label>
+            <div className="box-form" id='studentboxform'>
 
-                <div>
-                    <button className='submitbtn' type="submit">Remove Coordinator</button>
-                </div>
 
-                <div id='resultdiv'></div>
-            </form>
+
+                <div className="right">
+                    <h2 id='h2tag'>Remove Coordinator </h2><br />
+                    <Form onSubmit={removeCoordinator}>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label><b>Username</b></Form.Label>
+                            <Form.Control type="text" onChange={e => setUsername(e.target.value)} />
+
+                        </Form.Group>
+                        <div className='button'>
+                            <div id='wrongIDorPass'></div>
+                            <Button variant="success" className='submitbtn' type="submit">Remove Coordinator</Button>{' '}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Button variant="primary" onClick={goToDashboard}>Dashboard</Button>{' '}
+                            <br />
+
+
+                        </div>
+                    </Form>
+                    <br />
+                    <br />
+                </div></div>
+            
         </>
     )
 }

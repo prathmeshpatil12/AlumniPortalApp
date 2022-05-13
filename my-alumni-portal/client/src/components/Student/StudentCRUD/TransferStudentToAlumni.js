@@ -1,6 +1,9 @@
-import { React, useState, useEffect} from 'react';
+import { React, useState, useEffect } from 'react';
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Form from 'react-bootstrap/Form';
+import { Button, ButtonGroup } from '@chakra-ui/react';
+import '../../Internship/InternshipCRUD/AddInternship.css';
 
 
 
@@ -10,7 +13,7 @@ function TransferStudentToAlumni() {
     const [PRN, setPRN] = useState("");
     const [name, setName] = useState("");
     let navigate = useNavigate();
-    
+
 
     const goToDashboard = () => {
         navigate('/adminDashboard');
@@ -44,35 +47,44 @@ function TransferStudentToAlumni() {
         };
 
         const headers = {
-            'Content-Type':'application/json'
+            'Content-Type': 'application/json'
         }
 
         Axios.post('http://localhost:3001/addAlumni', obj, {
-            headers : headers
+            headers: headers
         }).then(() => {
         });
 
     }
 
     return (
-            <>
-            <h2>Transfer Student to Alumni</h2>
-            <br />
-            <button onClick={goToDashboard}>Go To Dashboard</button>
-            <br />
-            <form onSubmit={transferStud}>
-                <label>
-                    <p>PRN</p>
-                    <input type="text" onChange={e => setPRN(e.target.value)}/>
-                </label>
+        <>
 
-                <div>
-                    <button className='submitbtn' type="submit">Transfer Student to Alumni</button>
-                </div>
+            <div className="box-form" id='studentboxform'>
 
-                <div id='resultdiv'></div>
-            </form>
-            </>
+
+
+                <div className="right">
+                    <h2 id='h2tag'>Transfer Student </h2><br />
+                    <Form onSubmit={transferStud}>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label><b>PRN</b></Form.Label>
+                            <Form.Control type="text" onChange={e => setPRN(e.target.value)} />
+
+                        </Form.Group>
+                        <div className='button'>
+                            <div id='wrongIDorPass'></div>
+                            <Button variant="success" className='submitbtn' type="submit">Transfer Student to Alumni</Button>{' '}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Button variant="primary" onClick={goToDashboard}>Dashboard</Button>{' '}
+                            <br />
+
+
+                        </div>
+                    </Form>
+                    <br />
+                    <br />
+                </div></div>
+            
+        </>
     )
 }
 

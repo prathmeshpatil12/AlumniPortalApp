@@ -1,11 +1,13 @@
-import { React, useState} from 'react';
+import { React, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@chakra-ui/react';
-
+import Form from 'react-bootstrap/Form';
+import { Button, ButtonGroup } from '@chakra-ui/react';
+import '../../Internship/InternshipCRUD/AddInternship.css';
 
 function AddStudent() {
-    
+
     const [name, setName] = useState("");
     const [PRN, setPrn] = useState("");
     let navigate = useNavigate();
@@ -13,7 +15,7 @@ function AddStudent() {
 
     const addStud = async (e) => {
         e.preventDefault();
-        if(!PRN || !name){
+        if (!PRN || !name) {
             toast({
                 title: 'Please fill all the fields.',
                 description: "Empty fields.",
@@ -23,64 +25,79 @@ function AddStudent() {
             });
             return;
         }
-        else{
+        else {
             let obj = {
                 name: name,
                 PRN: PRN
             };
-    
+
             const headers = {
-                'Content-Type':'application/json'
+                'Content-Type': 'application/json'
             }
-    
+
             //Adding data in MySQL
             axios.post('http://localhost:3001/addStudent', obj, {
-                headers : headers
+                headers: headers
             })
-    
+
             //Adding Student data in MongoDB
             const prn = PRN;
             const type = "Student";
-            const {data} = await axios.post("http://localhost:3001/api/user", {
+            const { data } = await axios.post("http://localhost:3001/api/user", {
                 name, prn, type
             }, headers);
 
-                toast({
-                    title: 'Student account created.',
-                    description: "We've created your account for you.",
-                    status: 'success',
-                    duration: 9000,
-                    isClosable: true,
-                });
-                console.log(data);
+            toast({
+                title: 'Student account created.',
+                description: "We've created your account for you.",
+                status: 'success',
+                duration: 9000,
+                isClosable: true,
+            });
+            console.log(data);
         }
     }
 
     const goToDashboard = () => {
         navigate('/adminDashboard')
     }
-  
+
 
     return (
         <>
-            <h2>Add Student</h2>
-            <form onSubmit={addStud}>
-                <label>
-                    <p>PRN</p>
-                    <input type="text" onChange={e => setPrn(e.target.value)}/>
-                </label>
-                <br></br>
-                <label>
-                    <p>Name</p>
-                    <input type="text" onChange={e => setName(e.target.value)}/>
-                </label>
-                <div>
-                    <button className='submitbtn' type="submit">Add Student</button>
-                </div>
-            </form>
 
-            <h3 id='result'></h3>
-            <button onClick={goToDashboard}>Go back to Dashboard</button>
+            <div className="box-form" id='studentboxform'>
+
+
+
+                <div className="right">
+                    <h2 id='h2tag'>Add Student </h2><br />
+                    <Form onSubmit={addStud}>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label><b>PRN</b></Form.Label>
+                            <Form.Control type="text" onChange={e => setPrn(e.target.value)} />
+
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Label><b>Name</b></Form.Label>
+                            <Form.Control type="text" onChange={e => setName(e.target.value)} />
+                        </Form.Group>
+
+                        
+
+                        <div className='button'>
+                            <div id='wrongIDorPass'></div>
+                            <Button variant="success" className='submitbtn' type="submit">Add Student</Button>{' '}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Button variant="primary" onClick={goToDashboard}>Dashboard</Button>{' '}
+                            <br />
+
+
+                        </div>
+                    </Form>
+                    <br />
+                    <br />
+                </div></div>
+            
         </>
     );
 }
