@@ -34,24 +34,17 @@ function AddStudent() {
             }
     
             //Adding data in MySQL
-            console.log("Before SQL");
-            console.log(obj)
             axios.post('http://localhost:3001/addStudent', obj, {
                 headers : headers
-            }).then(() => {
-                //document.getElementById('result').innerHTML = "Successfully added Student";
-                //document.getElementById('result').style.color = "green";
-            });
-            console.log(obj);
+            })
     
-            //Adding data in MongoDB
+            //Adding Student data in MongoDB
             const prn = PRN;
             const type = "Student";
             const {data} = await axios.post("http://localhost:3001/api/user", {
                 name, prn, type
             }, headers);
 
-            console.log(data);
                 toast({
                     title: 'Student account created.',
                     description: "We've created your account for you.",
@@ -59,27 +52,7 @@ function AddStudent() {
                     duration: 9000,
                     isClosable: true,
                 });
-            //----------------------
-            /*
-            axios.post("http://localhost:3001/api/user",obj, {
-                headers : headers
-            }).then(() =>{
-                //////////////////////////////////////////////////////////////////
-                
-                console.log("User created----------||||||||||-----------------------")
-                console.log(obj)
-                toast({
-                    title: 'Student account created.',
-                    description: "We've created your account for you.",
-                    status: 'success',
-                    duration: 9000,
-                    isClosable: true,
-                });
-    
-                document.getElementById('result').innerHTML = "Successfully added Student !!";
-                document.getElementById('result').style.color = "green";
-            })
-            */
+                console.log(data);
         }
     }
 

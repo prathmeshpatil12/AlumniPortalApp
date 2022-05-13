@@ -1,6 +1,7 @@
 import { React, useState} from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useToast } from '@chakra-ui/react';
 
 
 function AddAlumni() {
@@ -8,25 +9,55 @@ function AddAlumni() {
     const [name, setName] = useState("");
     const [PRN, setPRN] = useState("");
     let navigate = useNavigate();
+    const toast = useToast();
 
-    const addAlumni = (e) => {
+    const addAlumni = async (e) => {
         e.preventDefault();
-        
-        let obj = {
-            name: name,
-            PRN: PRN
-        };
 
-        const headers = {
-            'Content-Type':'application/json'
+        if(!PRN || !name){
+            toast({
+                title: 'Please fill all the fields.',
+                description: "Empty fields.",
+                status: 'warning',
+                duration: 9000,
+                isClosable: true,
+            });
+            return;
         }
+        else{
+            let obj = {
+                name: name,
+                PRN: PRN
+            };
 
-        Axios.post('http://localhost:3001/addAlumni', obj, {
-            headers : headers
-        }).then(() => {
-            document.getElementById('result').innerHTML = "Successfully added Alumni";
-            document.getElementById('result').style.color = "green";
-        });
+            const headers = {
+                'Content-Type':'application/json'
+            }
+
+            axios.post('http://localhost:3001/addAlumni', obj, {
+                headers : headers
+            })
+            // .then(() => {
+            //     document.getElementById('result').innerHTML = "Successfully added Alumni";
+            //     document.getElementById('result').style.color = "green";
+            // });
+
+            //Adding Alumni data in MongoDB
+            const prn = PRN;
+            const type = "Alumni";
+            const {data} = await axios.post("http://localhost:3001/api/user", {
+                name, prn, type
+            }, headers);
+
+                toast({
+                    title: 'Alumni account created.',
+                    description: "We've created your account for you.",
+                    status: 'success',
+                    duration: 9000,
+                    isClosable: true,
+                });
+                console.log(data);
+        }
     }
 
     const goToDashboard = () => {
