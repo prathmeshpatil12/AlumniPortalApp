@@ -6,7 +6,7 @@ const bodyParser = require('body-parser')
 const {chats} = require("./data/dummyData");
 const connectDB = require('./config/mongodb');
 const userRoutes = require('./routes/userRoutes');
-const { notFound, errorHandler } = require('./middleware/errorMiddleware');
+const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 
 connectDB();
 

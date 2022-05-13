@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import pic4 from "../../../kit.png";
 import Form from 'react-bootstrap/Form';
 import pic from "../../../HighlightsAlumni.png";
-import pic1 from "../../../kit.png";
 import { Button, ButtonGroup } from '@chakra-ui/react'
 
 import './UpdateStudentProfile.css';
@@ -89,7 +88,6 @@ function UpdateStudentProfile() {
     <div className='bgcolor'>
 
       <div className="jumbotron jumbotron-billboard">
-        <div className="img"></div>
         <div className="container">
           <div className="row">
            
@@ -111,8 +109,8 @@ function UpdateStudentProfile() {
                         <Nav.Link href="/viewEvents"><b>Events and Workshops</b> </Nav.Link>
                       </Nav>
                       <Nav>
-                        <Nav.Link href="/updateStudentProfile">My Profile</Nav.Link>
-                        <Nav.Link onClick={logout}>Logout</Nav.Link>
+                        <Nav.Link href="/updateStudentProfile"><b>My Profile</b> </Nav.Link>
+                        <Nav.Link onClick={logout}><b>Logout</b> </Nav.Link>
                       </Nav>
                     </Navbar.Collapse>
                   </Container>
