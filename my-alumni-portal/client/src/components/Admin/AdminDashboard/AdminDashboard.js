@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import {Container, Navbar, Nav, NavDropdown} from 'react-bootstrap';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-
+import './AdminDashboard.css';
 
 function AdminDashboard() {
 
@@ -22,28 +22,32 @@ function AdminDashboard() {
 
   return (
     <>
-
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <div className='bgcolor'>
+        <div className="jumbotron jumbotron-billboard">
+          <div className="container">
+            <div className="row">
+              <div>
+      <Navbar collapseOnSelect expand="lg"  >
         <Container>
-        <Navbar.Brand href="/">Alumni Portal</Navbar.Brand>
+        <Navbar.Brand href="/"  id='navcolor'>Alumni Portal</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <NavDropdown title="Student" id="collasible-nav-dropdown">
-                <NavDropdown.Item href="/viewStudents">View Students</NavDropdown.Item>
+              <NavDropdown title="Student" id="collasible-nav-dropdown"  id='navcolor'>
+                <NavDropdown.Item href="/viewStudents" >View Students</NavDropdown.Item>
                 <NavDropdown.Item href="/addStudent">Add Students</NavDropdown.Item>
                 <NavDropdown.Item href="/removeStudent">Remove Student</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="/transferStudent">Transfer Students to Alumni</NavDropdown.Item>
               </NavDropdown>
-
-              <NavDropdown title="Alumni" id="collasible-nav-dropdown">
+              
+              <NavDropdown title="Alumni" id="collasible-nav-dropdown"  id='navcolor'>
                 <NavDropdown.Item href="/viewAlumni">View Alumni</NavDropdown.Item>
                 <NavDropdown.Item href="/addAlumni">Add Alumni</NavDropdown.Item>
                 <NavDropdown.Item href="/removeAlumni">Remove Alumni</NavDropdown.Item>
               </NavDropdown>
 
-              <NavDropdown title="Coordinator" id="collasible-nav-dropdown">
+              <NavDropdown title="Coordinator" id="collasible-nav-dropdown"  id='navcolor'>
                 <NavDropdown.Item href="/viewCoordinators">View Coordinators</NavDropdown.Item>
                 <NavDropdown.Item href="/addCoordinator">Add Coordinator</NavDropdown.Item>
                 <NavDropdown.Item href="/removeCoordinator">Remove Coordinator</NavDropdown.Item>
@@ -55,6 +59,11 @@ function AdminDashboard() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+      </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   )
 }
