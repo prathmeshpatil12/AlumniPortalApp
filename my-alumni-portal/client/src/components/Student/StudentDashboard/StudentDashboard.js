@@ -23,15 +23,13 @@ function StudentDashboard() {
   
     return (
       <>
-
+      
       <div className='bgcolor'>
         <div className="jumbotron jumbotron-billboard">
           <div className="container">
             <div className="row">
             
               <div>
-                
-                
               <Navbar collapseOnSelect expand="lg" >
                     <Container>
                 <div className="col-lg-2"><img src={pic4} className="img-fluid rounded thumbnail-image" /> </div>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -58,6 +56,7 @@ function StudentDashboard() {
           </div>
         </div>
       </div>
+      <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
       
     </>
     
