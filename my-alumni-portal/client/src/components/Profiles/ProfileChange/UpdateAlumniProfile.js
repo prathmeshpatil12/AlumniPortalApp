@@ -1,6 +1,13 @@
 import { React, useState} from 'react';
 import Axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import './UpdateStudentProfile.css';
+import pic4 from "../../../kit.png";
+import Form from 'react-bootstrap/Form';
+import pic from "../../../HighlightsAlumni.png";
+import { Button, ButtonGroup } from '@chakra-ui/react'
+import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap';
+
 
 function UpdateAlumniProfile() {
 
@@ -45,6 +52,13 @@ function UpdateAlumniProfile() {
       setDepartment(event.target.value);
   }
 
+  const logout = () => {
+    localStorage.removeItem("PRN");
+    localStorage.removeItem("Name");
+    localStorage.removeItem("Type");
+    navigate('/login');
+  }
+
   const goToDashboard = () => {
     if(localStorage.getItem("Type")=="Admin") {
         navigate('/adminDashboard');
@@ -59,75 +73,108 @@ function UpdateAlumniProfile() {
 
   return (
     <>
-    <div className='updateProfileForm'>
-    <h2>Update Profile</h2>
-    <form onSubmit={handleSubmit}>
-      <label>
-        <p>PRN</p>
-        <input type="text" placeholder={localStorage.getItem("PRN")} disabled={true}/>
-      </label>
-      <br />
-      <br />
-      <label>
-        <p>Name</p>
-        <input type="text" placeholder={localStorage.getItem("Name")} onChange={e => setName(e.target.value)}/>
-      </label>
-      <br />
-      <br />
-      <label>
-        <p>Current Company</p>
-        <input type="text" onChange={e => setCurrentCompany(e.target.value)}/>
-      </label>
-      <br />
-      <br />
-      <label>
-        <p>Passing Year</p>
-        <input type="text" onChange={e => setPassoutYear(e.target.value)}/>
-      </label>
-      <br />
-      <br />
 
-      <label>
-        <p>Department</p>
-        <select onChange={handleDepartmentChange}>
-            <option value="NULL">Select Option</option>
-            <option value="CSE">Computer Science and Engineering</option>
-            <option value="ENTC">Electronics and Telecommunication</option>
-            <option value="MECH">Mechanical Engineering</option>
-            <option value="ELE">Electrical Engineering</option>
-            <option value="BIO">Biotech</option>
-            <option value="CIVIL">Civil Engineering</option>
-            <option value="ENV">Environment Engineering</option>
-            <option value="AI">Artificial Intelligence</option>
-            <option value="DS">Data Science</option>
-        </select>
-      </label>
-      <br />
-      <br />
-      <label>
-        <p>Contact Number</p>
-        <input type="text" onChange={e => setContactNumber(e.target.value)}/>
-      </label>
-      <br />
-      <br />
-      <label>
-        <p>Email ID</p>
-        <input type="text" onChange={e => setEmailId(e.target.value)}/>
-      </label>
-      <br />
-      <br />
-      <label>
-        <p>LinkedIn Profile Link</p>
-        <input type="text" onChange={e => setLinkdinProfile(e.target.value)}/>
-      </label>
-      <div>
-        <div id='updatedDetails'></div>
-        <button className='submitbtn' type="submit">Submit</button>
+    <div className='bgcolor'>
+      <div className="jumbotron jumbotron-billboard">
+        <div className="container">
+          <div className="row">
+            <div>
+              <Navbar collapseOnSelect expand="lg">
+                <Container>
+                <div className="col-lg-2"><img src={pic4} className="img-fluid rounded thumbnail-image" /> </div>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <Navbar.Brand href="/"><b>Alumni Portal</b></Navbar.Brand>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse id="responsive-navbar-nav">
+                  <Nav className="me-auto myclass">
+                    <Nav.Link href="#features"><b>Chat System</b></Nav.Link>
+                    <Nav.Link href="/viewInternships"><b>Internship Opportunities</b></Nav.Link>
+                    <Nav.Link href="/viewJobs"><b>Job Opportunities</b></Nav.Link>
+                    <Nav.Link href="/viewEvents"><b>Events and Workshops</b></Nav.Link>
+                  </Nav>
+                  <Nav>
+                    <Nav.Link href="/updateAlumniProfile"><b>My Profile</b></Nav.Link>
+                    <Nav.Link onClick={logout}><b>Logout</b></Nav.Link>
+                  </Nav>
+                </Navbar.Collapse>
+                </Container>
+              </Navbar>
+            </div>
+          </div>
+        </div>
       </div>
-    </form>
     </div>
-    <br />
-    <button onClick={goToDashboard}>Go back to Dashboard</button>
+
+    <div className="box-form" id='studentboxform'>
+      <div className="right">
+
+        <Form onSubmit={handleSubmit}>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label><b>PRN</b></Form.Label>
+            <Form.Control type="text" placeholder={localStorage.getItem("PRN")} disabled={true} />
+
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label><b>Name</b></Form.Label>
+            <Form.Control type="text" placeholder={localStorage.getItem("Name")} onChange={e => setName(e.target.value)}/>
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label><b>Current Company</b></Form.Label>
+            <Form.Control type="text" onChange={e => setCurrentCompany(e.target.value)} />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label><b>Passing Year</b></Form.Label>
+            <Form.Control type="text" onChange={e => setPassoutYear(e.target.value)} />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label><b>Department</b></Form.Label>
+            <select onChange={handleDepartmentChange}>
+              <option value="NULL">Select Option</option>
+              <option value="CSE">Computer Science and Engineering</option>
+              <option value="ENTC">Electronics and Telecommunication</option>
+              <option value="MECH">Mechanical Engineering</option>
+              <option value="ELE">Electrical Engineering</option>
+              <option value="BIO">Biotech</option>
+              <option value="CIVIL">Civil Engineering</option>
+              <option value="ENV">Environment Engineering</option>
+              <option value="AI">Artificial Intelligence</option>
+              <option value="DS">Data Science</option>
+            </select>
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label><b>Contact Number</b></Form.Label>
+            <Form.Control type="text" onChange={e => setContactNumber(e.target.value)} />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label><b>Email ID</b></Form.Label>
+            <Form.Control type="text" onChange={e => setEmailId(e.target.value)} />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label><b>Linkdin Profile Link </b></Form.Label>
+            <Form.Control type="text" onChange={e => setEmailId(e.target.value)} />
+          </Form.Group>
+
+          <div className='button'>
+            <div id='wrongIDorPass'></div>
+            <Button variant="success" className='submitbtn' type="submit">Update Profile</Button>{' '}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Button variant="primary" onClick={goToDashboard}>Dashboard</Button>{' '}
+            <br />
+
+
+          </div>
+        </Form>
+        <br />
+        <br />
+
+        
+      </div>
+
+    </div>
     </>
   )
 }

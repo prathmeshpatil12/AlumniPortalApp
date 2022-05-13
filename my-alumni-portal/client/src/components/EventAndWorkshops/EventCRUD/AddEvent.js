@@ -1,9 +1,12 @@
-import { React, useState} from 'react';
+import { React, useState } from 'react';
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Form from 'react-bootstrap/Form';
+import { Button, ButtonGroup } from '@chakra-ui/react';
+import '../../Internship/InternshipCRUD/AddInternship.css';
 
 function AddEvent() {
-    
+
     const [event_name, setEventName] = useState("");
     const [description, setDescription] = useState("");
     const [nature_of_event, setNatureOfEvent] = useState("");
@@ -30,15 +33,15 @@ function AddEvent() {
         let sa = new Date(starts_at.replace(/-/g, '/').replace('T', ' '));
         let ea = new Date(ends_at.replace(/-/g, '/').replace('T', ' '));
         // doe = doe.toISOString().slice(0, 19).replace('T', ' ');
-        sa.setHours(sa.getHours()+5);
-        sa.setMinutes(sa.getMinutes()+30);
-        ea.setHours(ea.getHours()+5);
-        ea.setMinutes(ea.getMinutes()+30);
+        sa.setHours(sa.getHours() + 5);
+        sa.setMinutes(sa.getMinutes() + 30);
+        ea.setHours(ea.getHours() + 5);
+        ea.setMinutes(ea.getMinutes() + 30);
         sa = sa.toISOString().slice(0, 19).replace('T', ' ');
         sa = sa.slice(11, 19);
         ea = ea.toISOString().slice(0, 19).replace('T', ' ');
         ea = ea.slice(11, 19);
-        
+
         let obj = {
             event_name: event_name,
             description: description,
@@ -53,13 +56,13 @@ function AddEvent() {
         };
 
         console.log(obj);
-        
+
         const headers = {
-            'Content-Type':'application/json'
+            'Content-Type': 'application/json'
         }
 
         Axios.post('http://localhost:3001/addEvent', obj, {
-            headers : headers
+            headers: headers
         }).then(() => {
             document.getElementById('result').innerHTML = "Successfully added Event";
             document.getElementById('result').style.color = "green";
@@ -67,79 +70,92 @@ function AddEvent() {
     }
 
     const goToDashboard = () => {
-        if(localStorage.getItem("Type")=="Admin") {
+        if (localStorage.getItem("Type") == "Admin") {
             navigate('/adminDashboard');
-        } else if (localStorage.getItem("Type")=="Student") {
+        } else if (localStorage.getItem("Type") == "Student") {
             navigate('/studentDashboard');
-        } else if (localStorage.getItem("Type")=="Alumni") {
+        } else if (localStorage.getItem("Type") == "Alumni") {
             navigate("/alumniDashboard");
         } else {
             navigate("/coordinatorDashboard");
         }
     }
-  
+
 
     return (
         <>
-            <h2>Add Event</h2>
-            <form onSubmit={addEvent}>
-                <label>
-                    <p>Event Name</p>
-                    <input type="text" onChange={e => setEventName(e.target.value)}/>
-                </label>
-                <br></br>
-                <label>
-                    <p>Description</p>
-                    <input type="textfield" onChange={e => setDescription(e.target.value)}/>
-                </label>
-                <br></br>
-                <label>
-                    <p>Type of Event</p>
-                    <input type="text" onChange={e => setNatureOfEvent(e.target.value)}/>
-                </label>
-                <br></br>
-                <label>
-                    <p>Organizer</p>
-                    <input type="text" onChange={e => setOrganizer(e.target.value)}/>
-                </label>
-                <br></br>
-                <label>
-                    <p>Date of Event</p>
-                    <input type="datetime-local" onChange={e => setDateOfEvent(e.target.value)}/>
-                </label>
-                <br></br>
-                <label>
-                    <p>Start Time of Event</p>
-                    <input type="datetime-local" onChange={e => setStartsAt(e.target.value)}/>
-                </label>
-                <br></br>
-                <label>
-                    <p>End Time of Event</p>
-                    <input type="datetime-local" onChange={e => setEndsAt(e.target.value)}/>
-                </label>
-                <br></br>
-                <label>
-                    <p>Mode of Event</p>
-                    <input type="text" onChange={e => setModeOfEvent(e.target.value)}/>
-                </label>
-                <br></br>
-                <label>
-                    <p>Venue</p>
-                    <input type="text" onChange={e => setVenue(e.target.value)}/>
-                </label>
-                <br></br>
-                <label>
-                    <p>Registration Link</p>
-                    <input type="text" onChange={e => setRegistrationLink(e.target.value)}/>
-                </label>
 
-                <div>
-                    <button className='submitbtn' type="submit">Add Event</button>
-                </div>
-            </form>
+            <div className="box-form" id='studentboxform'>
 
-            <h3 id='result'></h3>
-            <button onClick={goToDashboard}>Go back to Dashboard</button>
+
+
+                <div className="right">
+                    <h2 id='h2tag'>Add Events </h2><br />
+                    <Form onSubmit={addEvent}>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label><b>Event Name</b></Form.Label>
+                            <Form.Control type="text" onChange={e => setEventName(e.target.value)} />
+
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Label><b>Description</b></Form.Label>
+                            <Form.Control type="textfield" onChange={e => setDescription(e.target.value)} />
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Label><b>Type of Event</b></Form.Label>
+                            <Form.Control type="text" onChange={e => setNatureOfEvent(e.target.value)} />
+                        </Form.Group>
+
+
+                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Label><b>Organizer</b></Form.Label>
+                            <Form.Control type="text" onChange={e => setOrganizer(e.target.value)} />
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Label><b>Date of Event</b></Form.Label>
+                            <Form.Control type="datetime-local" onChange={e => setDateOfEvent(e.target.value)} />
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Label><b>Start Time of Event</b></Form.Label>
+                            <Form.Control type="datetime-local" onChange={e => setStartsAt(e.target.value)} />
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Label><b>End Time of Event</b></Form.Label>
+                            <Form.Control type="datetime-local" onChange={e => setEndsAt(e.target.value)} />
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Label><b>Mode of Event</b></Form.Label>
+                            <Form.Control type="text" onChange={e => setModeOfEvent(e.target.value)} />
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Label><b>Venue</b></Form.Label>
+                            <Form.Control type="text" onChange={e => setVenue(e.target.value)} />
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Label><b>Registration Link</b></Form.Label>
+                            <Form.Control type="text" onChange={e => setRegistrationLink(e.target.value)} />
+                        </Form.Group>
+
+                        <div className='button'>
+                            <div id='wrongIDorPass'></div>
+                            <Button variant="success" className='submitbtn' type="submit">Update Profile</Button>{' '}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Button variant="primary" onClick={goToDashboard}>Dashboard</Button>{' '}
+                            <br />
+
+
+                        </div>
+                    </Form>
+                    <br />
+                    <br />
+                </div></div >
+            
         </>
     );
 }
