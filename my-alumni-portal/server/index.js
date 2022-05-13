@@ -3,12 +3,17 @@ const app = express();
 const mysql = require('mysql');
 const cors = require('cors');
 const bodyParser = require('body-parser')
-const {chats} = require("./data/dummyData")
+const {chats} = require("./data/dummyData");
+const connectDB = require('./config/mongodb');
+const userRoutes = require('./routes/userRoutes');
+
+connectDB();
 
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
+
 
 const db = mysql.createConnection({
     user: 'root',
@@ -483,7 +488,10 @@ app.put('/updateCoordinatorDetail', (req, res) => {
 app.get("/", (req, res) =>{
   res.send("<h1>Server is running</h1>");
 });
-  
+
+app.use('/api/user', userRoutes); 
+
+/*
 //Chat Reply
 app.get("/api/chat", (req, res) =>{
   res.send(chats);
@@ -495,3 +503,4 @@ app.get("/api/chat/:id", (req, res) =>{
   singlechat = chats.find((c) => c._id === req.params.id)
   res.send(singlechat);
 });
+*/

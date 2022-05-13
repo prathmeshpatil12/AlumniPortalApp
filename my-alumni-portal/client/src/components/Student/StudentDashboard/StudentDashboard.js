@@ -25,7 +25,7 @@ function StudentDashboard() {
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="me-auto">
-          <Nav.Link href="#features">Chat System</Nav.Link>
+          <Nav.Link href="/chat">Chat System</Nav.Link>
           <Nav.Link href="/viewInternships">Internship Opportunities</Nav.Link>
           <Nav.Link href="/viewJobs">Job Opportunities</Nav.Link>
           <Nav.Link href="/viewEvents">Events and Workshops</Nav.Link>
