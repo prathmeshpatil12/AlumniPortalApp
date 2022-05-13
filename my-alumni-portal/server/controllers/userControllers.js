@@ -3,10 +3,11 @@ const User = require("../models/userModel");
 const generateTokern = require("../config/generateToken");
 
 const registerUser = asyncHandler(async (req, res) =>{
-    const {name, prn, email, password, pic} = req.body;
+    const {name, prn, type} = req.body;
+    const password = "changeme"; //Default Password
     
     //Checking if the user exists in mongoDB
-    if(!name || !prn || !email || !password){
+    if(!name || !prn ){
         res.status(400);
         throw new Error("Please Enter all the Fields"); 
     }
@@ -18,24 +19,30 @@ const registerUser = asyncHandler(async (req, res) =>{
     }
 
     //Create the user if such user doesn't exist
+    console.log(req.body);
+    console.log("IN userController");
     const user = await User.create({
-        name, prn, email, password, pic,
+        name, prn, type, password,
     });
+    console.log(user);
     if(user){
         res.status(201).json({
             _id: user._id,
             name: user.name,
             prn: user.prn,
-            email: user.email,
+            type: user.type,
             pic: user.pic,
             token:generateTokern(user._id),
         });
+        console.log("DOne with mongo");
     } else{
         res.status(400);
         throw new Error("Failed to Create the User")
     }
 });
 
+
+//Login Authentication api
 const authUser = asyncHandler(async(req, res)=>{
     const { prn, password} = req.body;
 
@@ -47,7 +54,8 @@ const authUser = asyncHandler(async(req, res)=>{
             _id: user._id,
             name: user.name,
             prn: user.prn,
-            email: user.email,
+            type: user.type,
+            //email: user.email,
             pic: user.pic,
             token:generateTokern(user._id),
         })

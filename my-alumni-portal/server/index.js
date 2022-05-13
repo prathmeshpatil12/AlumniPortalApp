@@ -6,6 +6,7 @@ const bodyParser = require('body-parser')
 const {chats} = require("./data/dummyData");
 const connectDB = require('./config/mongodb');
 const userRoutes = require('./routes/userRoutes');
+const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 
 connectDB();
 
@@ -489,7 +490,11 @@ app.get("/", (req, res) =>{
   res.send("<h1>Server is running</h1>");
 });
 
+//Get, Post Data of user
 app.use('/api/user', userRoutes); 
+
+app.use(notFound);
+app.use(errorHandler);
 
 /*
 //Chat Reply
