@@ -481,9 +481,9 @@ app.put('/updateCoordinatorDetail', (req, res) => {
 
 //Test
 app.get("/", (req, res) =>{
-  res.send("<h1>Kshitij is running</h1>");
+  res.send("<h1>Server is running</h1>");
 });
-
+  
 //Chat Reply
 app.get("/api/chat", (req, res) =>{
   res.send(chats);
