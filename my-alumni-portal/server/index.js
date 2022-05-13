@@ -3,6 +3,7 @@ const app = express();
 const mysql = require('mysql');
 const cors = require('cors');
 const bodyParser = require('body-parser')
+const {chats} = require("./data/dummyData")
 
 app.use(cors());
 app.use(express.json());
@@ -19,6 +20,7 @@ const db = mysql.createConnection({
 app.listen(3001, () => {
     console.log("Yey, your server is running on port 3001");
 });
+
 
 // LoginDetails used while logging in
 app.get("/loginDetails/:id", (req, res) => {
@@ -470,3 +472,26 @@ app.put('/updateCoordinatorDetail', (req, res) => {
   }
   )
 })
+
+
+
+//--------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------
+// MongoDB : APIs for CHAT SYSTEM ------------------------------------------------------------------------------------
+
+//Test
+app.get("/", (req, res) =>{
+  res.send("<h1>Kshitij is running</h1>");
+});
+
+//Chat Reply
+app.get("/api/chat", (req, res) =>{
+  res.send(chats);
+});
+
+//-------
+app.get("/api/chat/:id", (req, res) =>{
+  //console.log(req.params.id)
+  singlechat = chats.find((c) => c._id === req.params.id)
+  res.send(singlechat);
+});
