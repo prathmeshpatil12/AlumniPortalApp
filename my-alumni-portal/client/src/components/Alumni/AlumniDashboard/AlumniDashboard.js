@@ -1,7 +1,8 @@
 import { React, useEffect} from 'react';
 import {Container, Navbar, Nav, NavDropdown} from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import './AlumniDashboard.css'
+import pic4 from "../../../kit.png";
+import './AlumniDashboard.css';
 
 function AlumniDashboard() {
     let navigate = useNavigate();
@@ -20,24 +21,38 @@ function AlumniDashboard() {
     }
   
     return (
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Container>
-      <Navbar.Brand href="/">Alumni Portal</Navbar.Brand>
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-      <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="me-auto myclass">
-          <Nav.Link href="#features">Chat System</Nav.Link>
-          <Nav.Link href="/viewInternships">Internship Opportunities</Nav.Link>
-          <Nav.Link href="/viewJobs">Job Opportunities</Nav.Link>
-          <Nav.Link href="/viewEvents">Events and Workshops</Nav.Link>
-        </Nav>
-        <Nav>
-          <Nav.Link href="/updateAlumniProfile">My Profile</Nav.Link>
-          <Nav.Link onClick={logout}>Logout</Nav.Link>
-        </Nav>
-      </Navbar.Collapse>
-      </Container>
-    </Navbar>
+      <>
+      <div className='bgcolor'>
+        <div className="jumbotron jumbotron-billboard">
+          <div className="container">
+            <div className="row">
+              <div>
+                <Navbar collapseOnSelect expand="lg">
+                  <Container>
+                  <div className="col-lg-2"><img src={pic4} className="img-fluid rounded thumbnail-image" /> </div>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <Navbar.Brand href="/"><b>Alumni Portal</b></Navbar.Brand>
+                  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                  <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav className="me-auto myclass">
+                      <Nav.Link href="#features"><b>Chat System</b></Nav.Link>
+                      <Nav.Link href="/viewInternships"><b>Internship Opportunities</b></Nav.Link>
+                      <Nav.Link href="/viewJobs"><b>Job Opportunities</b></Nav.Link>
+                      <Nav.Link href="/viewEvents"><b>Events and Workshops</b></Nav.Link>
+                    </Nav>
+                    <Nav>
+                      <Nav.Link href="/updateAlumniProfile"><b>My Profile</b></Nav.Link>
+                      <Nav.Link onClick={logout}><b>Logout</b></Nav.Link>
+                    </Nav>
+                  </Navbar.Collapse>
+                  </Container>
+                </Navbar>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </>
+      
     )
 }
 
