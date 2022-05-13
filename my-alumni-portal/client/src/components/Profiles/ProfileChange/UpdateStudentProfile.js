@@ -121,7 +121,7 @@ function UpdateStudentProfile() {
       </div>
 
 
-      <div className="box-form">
+      <div className="box-form" id='studentboxform'>
 
 
 
@@ -201,7 +201,7 @@ function UpdateStudentProfile() {
 
             <div className='button'>
               <div id='wrongIDorPass'></div>
-              <Button variant="success" className='submitbtn' type="submit">Update Profile</Button>{' '} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Button variant="primary" onClick={goToDashboard}>Go back to Dashboard</Button>{' '}
+              <Button variant="success" className='submitbtn' type="submit">Update Profile</Button>{' '}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Button variant="primary" onClick={goToDashboard}>Dashboard</Button>{' '}
               <br />
 
 

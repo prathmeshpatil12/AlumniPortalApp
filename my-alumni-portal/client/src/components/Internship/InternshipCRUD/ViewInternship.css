@@ -1,0 +1,35 @@
+#rowlist {
+    margin: 20px; 
+    background-image: url('../../../bgimg.jpg');
+    overflow: hidden;
+    border: 20px;
+    border-radius: 20px;
+    padding-left: 10%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+  }
+
+  #heading{
+      color: black;
+  }
+
+  .g-4{
+      width: 100%;
+    
+  }
+
+  #card-bd{
+      width: 80%;
+  }
+
+  #btnbtn{
+      color: #fff;
+      background-color: #000;
+  }
+  #btnbtn1{
+    color: #fff;
+    background-color: rgb(44, 27, 27);
+    font-size: 1.8rem;
+    opacity: 0.8;
+    padding: 1.5rem;
+}

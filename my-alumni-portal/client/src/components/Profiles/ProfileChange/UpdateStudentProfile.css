@@ -82,8 +82,8 @@ h3{
     margin-top: 5%;
     margin-left: 18%;
     margin-right: 5%;
-    width: 60%;
-    background: #FFFFFF;
+    width:60%;
+    background: transparent;
     border-radius: 10px;
     overflow: hidden;
     display: flex;
@@ -238,4 +238,8 @@ h3{
 
   .button{
       padding: auto;
+  }
+
+  #studentboxform{
+    width: 40%;
   }
