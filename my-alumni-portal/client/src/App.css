@@ -39,8 +39,8 @@
 
 h1 {
   text-align: center;
-  background-color:#000e12;
-  color:whitesmoke;
+  font-size: 200px;
+  color:rgb(29, 16, 16);
 }
 
 .wrapper {
