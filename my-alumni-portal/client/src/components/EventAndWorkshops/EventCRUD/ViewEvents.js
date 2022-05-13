@@ -4,17 +4,17 @@ import { useNavigate } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
-
+//import Button from 'react-bootstrap/Button';
+import { Button, ButtonGroup } from '@chakra-ui/react';
+import '../../Internship/InternshipCRUD/ViewInternship.css';
+import pic4 from "../../../kit.png";
 function ViewEvents() {
     const[eventList, setEventList] = useState([]);
 
     let navigate = useNavigate();
 
     useEffect(() => {
-        if(localStorage.getItem("Type")!="Coordinator") {
-            document.getElementById('addbtn').style.visibility="hidden";
-        }
+        
 
         Axios.get('http://localhost:3001/getEvents').then((response) => {
             const someList = response.data;
@@ -41,20 +41,49 @@ function ViewEvents() {
 
     return (
         <>
-        <h2>Events List</h2>
-        <br />
-        <button onClick={goToDashboard}>Go back to Dashboard</button>
-        <br />
-        <br />
-        <button id='addbtn' onClick={addEvent}>Add Event</button>
-        <br />
-        <br />
 
-        
+<div className="jumbotron jumbotron-billboard">
+                <div className="img"></div>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-lg-6">
+                            <img src={pic4} className="img-fluid rounded thumbnail-image" />
+                        </div>
+                        <div className='col-lg-6'>
+                            <div className='center1'>
+                                <br />
+                                <Button colorScheme='purple' variant='solid' size='sm' id="btnbtn1" isDisabled="true">
+                                    Events and Workshops
+                                </Button>
+                                <br /><br />
+
+                                <Button size='md'
+                                    height='48px'
+                                    width='200px'
+                                    border='2px'
+                                    borderColor='blackAlpha.500' colorScheme='purple' variant='outline' onClick={goToDashboard}>
+                                    Go back to Dashboard
+                                </Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <Button size='md'
+                                    height='48px'
+                                    width='200px'
+                                    border='2px'
+                                    borderColor='blackAlpha.500' colorScheme='purple' variant='outline' onClick={addEvent}>
+                                    Add Event
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+
+        <div id='rowlist'>
+
         <Row xs={3} md={1} className="g-4">
             {eventList.map((val, key) => (
                 <Col>
-                <Card>
+                <Card id='card-bd'>
                     <Card.Body>
                     <Card.Title>{val.event_name}</Card.Title>
                     <Card.Subtitle>
@@ -82,8 +111,8 @@ function ViewEvents() {
                     <Card.Text>
                         Venue : {val.venue}
                     </Card.Text>
-                    <a href={val.registration_link} target="_blank">
-                        <Button variant="dark">Register</Button>
+                    <a href={val.registration_link} target="_blank"><br />
+                        <Button variant="dark" id='btnbtn'>Register</Button>
                     </a>
                     
                     </Card.Body>
@@ -91,6 +120,7 @@ function ViewEvents() {
                 </Col>
             ))}
         </Row>
+        </div>
 
         </>
     )
