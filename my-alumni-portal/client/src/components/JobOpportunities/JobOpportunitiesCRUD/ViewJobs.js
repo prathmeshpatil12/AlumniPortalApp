@@ -16,9 +16,6 @@ function ViewJobs() {
     let navigate = useNavigate();
 
     useEffect(() => {
-
-        
-
         Axios.get('http://localhost:3001/getJobs').then((response) => {
             const someList = response.data;
             setJobList(someList);

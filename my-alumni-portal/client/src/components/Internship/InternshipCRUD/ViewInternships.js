@@ -12,8 +12,6 @@ function ViewInternships() {
     let navigate = useNavigate();
 
     useEffect(() => {
-        
-
         Axios.get('http://localhost:3001/getInternships').then((response) => {
             const someList = response.data;
             setInternshipList(someList);
