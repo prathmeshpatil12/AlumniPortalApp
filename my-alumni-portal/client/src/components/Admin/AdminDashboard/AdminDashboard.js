@@ -54,7 +54,7 @@ function AdminDashboard() {
               </NavDropdown>
             </Nav>
             <Nav>
-              <Nav.Link onClick={logout}>Logout</Nav.Link>
+              <Nav.Link onClick={logout} id="navcolor">Logout</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
