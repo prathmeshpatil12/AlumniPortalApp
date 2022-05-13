@@ -28,6 +28,7 @@ import ChangePassword from './components/Profiles/PasswordChange/ChangePassword'
 import UpdateStudentProfile from './components/Profiles/ProfileChange/UpdateStudentProfile';
 import UpdateAlumniProfile from './components/Profiles/ProfileChange/UpdateAlumniProfile';
 import UpdateCoordinatorProfile from './components/Profiles/ProfileChange/UpdateCoordinatorProfile';
+import Button from 'react-bootstrap/Button';
 
 function App() {
   return (
