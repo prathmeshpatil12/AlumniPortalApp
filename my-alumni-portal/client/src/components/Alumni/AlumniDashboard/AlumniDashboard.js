@@ -1,6 +1,7 @@
 import { React, useEffect} from 'react';
 import {Container, Navbar, Nav, NavDropdown} from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import './AlumniDashboard.css'
 
 function AlumniDashboard() {
     let navigate = useNavigate();
@@ -24,7 +25,7 @@ function AlumniDashboard() {
       <Navbar.Brand href="/">Alumni Portal</Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="me-auto">
+        <Nav className="me-auto myclass">
           <Nav.Link href="#features">Chat System</Nav.Link>
           <Nav.Link href="/viewInternships">Internship Opportunities</Nav.Link>
           <Nav.Link href="/viewJobs">Job Opportunities</Nav.Link>
