@@ -16,9 +16,7 @@ function ViewInternships() {
     let navigate = useNavigate();
 
     useEffect(() => {
-        if (localStorage.getItem("Type") == "Student") {
-            document.getElementById('addbtn').style.visibility = "hidden";
-        }
+        
 
         Axios.get('http://localhost:3001/getInternships').then((response) => {
             const someList = response.data;
