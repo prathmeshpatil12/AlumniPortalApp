@@ -69,7 +69,7 @@ export const AppWrapper = () => {
             <div className='col-lg-6'>
               <div className='center1'>
                 <br />
-                <h2><b>Welcome 'Name pass dynamically'</b></h2>
+                <h2><b>Welcome {localStorage.getItem("Name")}</b></h2>
                 <p>KIT's Alumini Portal</p>
                 <p>KIT'S College Of Engineering (Autonomous)</p>
               </div>
