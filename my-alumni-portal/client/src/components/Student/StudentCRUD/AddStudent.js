@@ -5,7 +5,7 @@ import { useToast } from '@chakra-ui/react';
 import Form from 'react-bootstrap/Form';
 import { Button, ButtonGroup } from '@chakra-ui/react';
 import '../../Internship/InternshipCRUD/AddInternship.css';
- 
+
 function AddStudent() {
 
     const [name, setName] = useState("");

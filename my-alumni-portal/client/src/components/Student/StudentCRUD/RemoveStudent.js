@@ -36,6 +36,7 @@ function RemoveStudent() {
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label><b>PRN</b></Form.Label>
                             <Form.Control type="text" onChange={e => setPRN(e.target.value)} />
+
                         </Form.Group>
                         <div className='button'>
                             <div id='wrongIDorPass'></div>

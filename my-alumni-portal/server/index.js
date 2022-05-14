@@ -490,15 +490,8 @@ app.get("/", (req, res) =>{
   res.send("<h1>Server is running</h1>");
 });
 
-//Post Data of user
+//Get, Post Data of user
 app.use('/api/user', userRoutes); 
-
-//Delete Data of user
-app.delete("/api/user/:prn", userRoutes);
-// app.delete("/api/user/:prn", (req, res) => {
-//   const prn = req.params.prn;
-//   console.log(req.params);
-// });
 
 app.use(notFound);
 app.use(errorHandler);

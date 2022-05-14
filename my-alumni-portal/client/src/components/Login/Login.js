@@ -8,14 +8,13 @@ import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import pic from "../../HighlightsAlumni.png";
 import pic1 from "../../kit.png";
-import { Button, ButtonGroup, useToast } from '@chakra-ui/react'
+import { Button, ButtonGroup } from '@chakra-ui/react'
 
 function Login() {
 
   const [PRN, setPRN] = useState("");
   const [password, setPassword] = useState("");
   let navigate = useNavigate();
-  const toast = useToast();
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -36,14 +35,7 @@ function Login() {
         localStorage.setItem("Name", name);
         localStorage.setItem("Type", type);
         navigate('/');
-        toast({
-          title: 'Login Successful',
-          description: "Welcome to our portal.",
-          status: 'success',
-          duration: 9000,
-          isClosable: true,
-      });
-        
+
       } else {
         document.getElementById("wrongIDorPass").innerHTML = "Wrong PRN or Password. Please Try Again!";
         document.getElementById("wrongIDorPass").style.color = "red";
