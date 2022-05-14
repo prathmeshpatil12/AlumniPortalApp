@@ -266,7 +266,6 @@ app.post("/addInternship", (req, res) => {
 
 // Admin reads Coordinator data
 app.get("/getInternships/:filter/:val", (req, res) => {
-  console.log(req.params);
   if(req.params.filter == 'all'){
     db.query("SELECT * FROM Internship", (err, result) => {
       if(err) {
@@ -279,7 +278,6 @@ app.get("/getInternships/:filter/:val", (req, res) => {
   }
   else {
     let query = "SELECT * FROM Internship WHERE " + req.params.filter + " LIKE '%" + req.params.val + "%'";
-    console.log(query);
     db.query(query, (err, result) => {
       if(err) {
         console.log(err);
@@ -323,14 +321,30 @@ app.post("/addJob", (req, res) => {
 
 
 // Everyone reads Job data
-app.get("/getJobs", (req, res) => {
-  db.query("SELECT * FROM Job", (err, result) => {
-    if(err) {
-      console.log(err);
-    } else {
-      res.send(result);
-    }
-  });
+app.get("/getJobs/:filter/:val", (req, res) => {
+  console.log(req.params);
+  if(req.params.filter=='all')
+  {
+    db.query("SELECT * FROM Job", (err, result) => {
+      if(err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    });
+  }
+
+  else {
+    let query = "SELECT * FROM Job WHERE " + req.params.filter + " LIKE '%" + req.params.val + "%'";
+    console.log(query);
+    db.query(query, (err, result) => {
+      if(err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    })
+  }
 });
 
 

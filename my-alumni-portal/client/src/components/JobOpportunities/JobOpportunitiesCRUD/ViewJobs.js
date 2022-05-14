@@ -6,17 +6,23 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 //import Button from 'react-bootstrap/Button';
 import '../../Internship/InternshipCRUD/ViewInternship.css';
+import Form from 'react-bootstrap/Form';
+
 
 import { Button, ButtonGroup } from '@chakra-ui/react';
 import pic4 from "../../../kit.png";
 
 function ViewJobs() {
     const [jobList, setJobList] = useState([]);
+    const [filter, setFilter] = useState("");
+    const [value, setValue] = useState("");
 
     let navigate = useNavigate();
 
     useEffect(() => {
-        Axios.get('http://localhost:3001/getJobs').then((response) => {
+
+        let toReq = 'http://localhost:3001/getJobs/' + 'all/' + 'all';
+        Axios.get(toReq).then((response) => {
             const someList = response.data;
             setJobList(someList);
             console.log(jobList);
@@ -37,6 +43,24 @@ function ViewJobs() {
 
     const addJob = () => {
         navigate('/addJob');
+    }
+
+    const handleFilterChange = (event) => {
+        setFilter(event.target.value);
+    }
+
+    const applyFilter = (e) => {
+        e.preventDefault();
+
+        let toReq = 'http://localhost:3001/getJobs/' + filter + '/' + value;
+        console.log(toReq);
+
+        Axios.get(toReq).then((response) => {
+            const someList = response.data;
+            setJobList(someList);
+            console.log(jobList);
+        });
+
     }
 
     return (
@@ -77,6 +101,31 @@ function ViewJobs() {
                 </div>
             </div>
             <br />
+
+            <h2 id='h2tag'>Filters </h2><br />
+            <Form onSubmit={applyFilter}>
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label><b>Filter on</b></Form.Label>
+                <select onChange={handleFilterChange}>
+                    <option value="all">Select Option</option>
+                    <option value="company_name">Company</option>
+                    <option value="eligible_batches">Eligible Batches</option>
+                    <option value="eligible_branches">Eligible Branches</option>
+                </select>
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label><b>Value</b></Form.Label>
+                    <Form.Control type="text" onChange={e => setValue(e.target.value)} />
+                </Form.Group>
+
+                
+
+                <div className='button'>
+                    <Button variant="success" className='submitbtn' type="submit">Apply Filter</Button>{' '}
+                    <br />
+                </div>
+            </Form>
 
             <div  id='rowlist'> 
             <Row xs={3} md={2} className="g-4" >

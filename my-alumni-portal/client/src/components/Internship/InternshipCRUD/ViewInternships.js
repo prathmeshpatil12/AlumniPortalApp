@@ -105,69 +105,69 @@ function ViewInternships() {
             <br />
 
             <h2 id='h2tag'>Filters </h2><br />
-                    <Form onSubmit={applyFilter}>
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Label><b>Filter on</b></Form.Label>
-                        <select onChange={handleFilterChange}>
-                            <option value="all">Select Option</option>
-                            <option value="company_name">Company</option>
-                            <option value="eligible_batches">Eligible Batches</option>
-                            <option value="eligible_branches">Eligible Branches</option>
-                        </select>
-                        </Form.Group>
+            <Form onSubmit={applyFilter}>
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label><b>Filter on</b></Form.Label>
+                <select onChange={handleFilterChange}>
+                    <option value="all">Select Option</option>
+                    <option value="company_name">Company</option>
+                    <option value="eligible_batches">Eligible Batches</option>
+                    <option value="eligible_branches">Eligible Branches</option>
+                </select>
+                </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                            <Form.Label><b>Value</b></Form.Label>
-                            <Form.Control type="text" onChange={e => setValue(e.target.value)} />
-                        </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label><b>Value</b></Form.Label>
+                    <Form.Control type="text" onChange={e => setValue(e.target.value)} />
+                </Form.Group>
 
-                        
+                
 
-                        <div className='button'>
-                            <Button variant="success" className='submitbtn' type="submit">Apply Filter</Button>{' '}
-                            <br />
-                        </div>
-                    </Form>
-
-
-                    <div id='rowlist'>
-
-                        <Row xs={3} md={2} className="g-4">
-                            {internshipList.map((val, key) => (
-                                <Col>
-                                    <Card id="card-bd">
-                                        <Card.Body >
-                                            <Card.Title>{val.company_name}</Card.Title>
-                                            <Card.Subtitle>
-                                                Position : {val.position}
-                                            </Card.Subtitle>
-                                            <hr></hr>
-                                            <Card.Text>
-                                                Eligible Batches : {val.eligible_batches}
-                                            </Card.Text>
-                                            <Card.Text>
-                                                Eligible Branches : {val.eligible_branches}
-                                            </Card.Text>
-                                            <Card.Text>
-                                                Experience Required : {val.experience_required}
-                                            </Card.Text>
-                                            <br />
-                                            <a href={val.registration_link} target="_blank">
-                                                <Button colorScheme='purple' variant='solid' size='sm' id="btnbtn">
-                                                    Register
-                                                </Button>
-                                            </a>
-                                            <br />
-                                            <br />
-                                            <Card.Footer>
-                                                Date Posted : {val.date_posted.slice(0, 10).split('-').reverse().join('-')}
-                                            </Card.Footer>
-                                        </Card.Body>
-                                    </Card>
-                                </Col>
-                            ))}
-                        </Row>
+                <div className='button'>
+                    <Button variant="success" className='submitbtn' type="submit">Apply Filter</Button>{' '}
+                    <br />
                 </div>
+            </Form>
+
+
+            <div id='rowlist'>
+
+                <Row xs={3} md={2} className="g-4">
+                    {internshipList.map((val, key) => (
+                        <Col>
+                            <Card id="card-bd">
+                                <Card.Body >
+                                    <Card.Title>{val.company_name}</Card.Title>
+                                    <Card.Subtitle>
+                                        Position : {val.position}
+                                    </Card.Subtitle>
+                                    <hr></hr>
+                                    <Card.Text>
+                                        Eligible Batches : {val.eligible_batches}
+                                    </Card.Text>
+                                    <Card.Text>
+                                        Eligible Branches : {val.eligible_branches}
+                                    </Card.Text>
+                                    <Card.Text>
+                                        Experience Required : {val.experience_required}
+                                    </Card.Text>
+                                    <br />
+                                    <a href={val.registration_link} target="_blank">
+                                        <Button colorScheme='purple' variant='solid' size='sm' id="btnbtn">
+                                            Register
+                                        </Button>
+                                    </a>
+                                    <br />
+                                    <br />
+                                    <Card.Footer>
+                                        Date Posted : {val.date_posted.slice(0, 10).split('-').reverse().join('-')}
+                                    </Card.Footer>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    ))}
+                </Row>
+        </div>
 
         </>
     )
