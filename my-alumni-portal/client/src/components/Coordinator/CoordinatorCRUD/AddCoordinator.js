@@ -2,6 +2,10 @@ import { React, useState} from 'react';
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+import Form from 'react-bootstrap/Form';
+import { Button, ButtonGroup } from '@chakra-ui/react';
+import '../../Internship/InternshipCRUD/AddInternship.css';
+
 
 function AddCoordinator() {
 
@@ -35,24 +39,39 @@ function AddCoordinator() {
 
     return (
         <>
-        <h2>AddCoordinator</h2>
-        <form onSubmit={addCoordinator}>
-            <label>
-                <p>Username</p>
-                <input type="text" onChange={e => setUsername(e.target.value)}/>
-            </label>
-            <br></br>
-            <label>
-                <p>Name</p>
-                <input type="text" onChange={e => setName(e.target.value)}/>
-            </label>
-            <div>
-                <button className='submitbtn' type="submit">Add Coordinator</button>
-            </div>
-        </form>
 
-        <h3 id='result'></h3>
-        <button onClick={goToDashboard}>Go back to Dashboard</button>
+<div className="box-form" id='studentboxform'>
+
+
+
+<div className="right">
+    <h2 id='h2tag'>Add Coordinator</h2><br />
+    <Form onSubmit={addCoordinator}>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label><b>User Name</b></Form.Label>
+            <Form.Control type="text" onChange={e => setUsername(e.target.value)} />
+
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label><b>Name</b></Form.Label>
+            <Form.Control type="text" onChange={e => setName(e.target.value)} />
+        </Form.Group>
+
+        
+
+        <div className='button'>
+            <div id='wrongIDorPass'></div>
+            <Button variant="success" className='submitbtn' type="submit">Add Coordinator</Button>{' '}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Button variant="primary" onClick={goToDashboard}>Dashboard</Button>{' '}
+            <br />
+
+
+        </div>
+    </Form>
+    <br />
+    <br />
+</div></div>
+        
         </>
     )
 }

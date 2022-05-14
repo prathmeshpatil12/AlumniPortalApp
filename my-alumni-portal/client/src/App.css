@@ -46,4 +46,6 @@ h1 {
 .wrapper {
   padding: 20px;
   background-image: url('./theme1.jpg');
+  background-repeat: round;
+  
 }
