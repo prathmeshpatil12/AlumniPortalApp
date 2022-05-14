@@ -175,6 +175,7 @@ function UpdateAlumniProfile() {
       </div>
 
     </div>
+    <button onClick={goToDashboard}>Go back to Dashboard</button>
     </>
   )
 }

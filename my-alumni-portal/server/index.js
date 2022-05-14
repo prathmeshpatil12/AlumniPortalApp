@@ -266,15 +266,33 @@ app.post("/addInternship", (req, res) => {
 
 
 // Admin reads Coordinator data
-app.get("/getInternships", (req, res) => {
-  db.query("SELECT * FROM Internship", (err, result) => {
-    if(err) {
-      console.log(err);
-    } else {
-      res.send(result);
+app.get("/getInternships/:filter/:val", (req, res) => {
+  if(req.params.filter == 'all'){
+    db.query("SELECT * FROM Internship", (err, result) => {
+      if(err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
     }
-  });
+    );
+  }
+  else {
+    let query = "SELECT * FROM Internship WHERE " + req.params.filter + " LIKE '%" + req.params.val + "%'";
+    db.query(query, (err, result) => {
+      if(err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    })
+  }
+  
 });
+
+
+// Filters internship data
+
 
 
 
@@ -304,14 +322,30 @@ app.post("/addJob", (req, res) => {
 
 
 // Everyone reads Job data
-app.get("/getJobs", (req, res) => {
-  db.query("SELECT * FROM Job", (err, result) => {
-    if(err) {
-      console.log(err);
-    } else {
-      res.send(result);
-    }
-  });
+app.get("/getJobs/:filter/:val", (req, res) => {
+  console.log(req.params);
+  if(req.params.filter=='all')
+  {
+    db.query("SELECT * FROM Job", (err, result) => {
+      if(err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    });
+  }
+
+  else {
+    let query = "SELECT * FROM Job WHERE " + req.params.filter + " LIKE '%" + req.params.val + "%'";
+    console.log(query);
+    db.query(query, (err, result) => {
+      if(err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    })
+  }
 });
 
 
@@ -377,14 +411,30 @@ app.post("/addEvent", (req, res) => {
 
 
 // Everyone reads Event data
-app.get("/getEvents", (req, res) => {
-  db.query("SELECT * FROM Events", (err, result) => {
-    if(err) {
-      console.log(err);
-    } else {
-      res.send(result);
-    }
-  });
+app.get("/getEvents/:filter/:val", (req, res) => {
+  console.log(req.params);
+  if(req.params.filter=='all') {
+    db.query("SELECT * FROM Events", (err, result) => {
+      if(err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    });
+  }
+
+  else {
+    let query = "SELECT * FROM Events WHERE " + req.params.filter + " LIKE '%" + req.params.val + "%'";
+    console.log(query);
+    db.query(query, (err, result) => {
+      if(err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    })
+  }
+
 });
 
 
