@@ -145,14 +145,26 @@ app.post("/addAlumni", (req, res) => {
 
 
 // Admin reads Alumni data
-app.get("/getAlumni", (req, res) => {
-  db.query("SELECT * FROM Alumni", (err, result) => {
-    if(err) {
-      console.log(err);
-    } else {
-      res.send(result);
-    }
-  });
+app.get("/getAlumni/:filter/:val", (req, res) => {
+  if(req.params.filter=='all') {
+    db.query("SELECT * FROM Alumni", (err, result) => {
+      if(err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    });
+  }
+  else {
+    let query = "SELECT * FROM Alumni WHERE " + req.params.filter + " LIKE '%" + req.params.val + "%'";
+    db.query(query, (err, result) => {
+      if(err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    })
+  }
 });
 
 
@@ -489,6 +501,9 @@ app.put('/updateAlumniDetail', (req, res) => {
   const id = req.body.PRN;
   const name = req.body.name;
   let current_company = req.body.current_company==''?'NULL':req.body.current_company;
+  let current_work = req.body.current_work==''?'NULL':req.body.current_work;
+  let masters_institute_india = req.body.masters_institute_india==''?'NULL':req.body.masters_institute_india;
+  let masters_university_abroad = req.body.masters_university_abroad==''?'NULL':req.body.masters_university_abroad;
   let department = req.body.department==''?'NULL':req.body.department;
   let passout_year = (req.body.passout_year=='' || req.body.passout_year==undefined)?'NULL':req.body.passout_year;
   let contact_number = req.body.contact_number==''?'NULL':req.body.contact_number;
@@ -496,8 +511,8 @@ app.put('/updateAlumniDetail', (req, res) => {
   let linkdin_profile = req.body.linkdin_profile==''?'NULL':req.body.linkdin_profile;
   console.log(name, current_company, department, passout_year, contact_number, email_id, linkdin_profile);
 
-  db.query("UPDATE Alumni SET name=?, current_company=?, passout_year=?, department=?, contact_number=?, email_id=?, linkdin_profile=? WHERE PRN = ?", 
-  [name, current_company, passout_year, department, contact_number, email_id, linkdin_profile, id],
+  db.query("UPDATE Alumni SET name=?, current_work=?, masters_institute_india=?, masters_university_abroad=? current_company=?, passout_year=?, department=?, contact_number=?, email_id=?, linkdin_profile=? WHERE PRN = ?", 
+  [name, current_work, masters_institute_india, masters_university_abroad, current_company, passout_year, department, contact_number, email_id, linkdin_profile, id],
   (err, result) => {
     if(err) {
       console.log(err);
