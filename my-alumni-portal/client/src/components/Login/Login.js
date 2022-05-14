@@ -34,9 +34,24 @@ function Login() {
         localStorage.setItem("PRN", PRN);
         localStorage.setItem("Name", name);
         localStorage.setItem("Type", type);
-        navigate('/');
 
-      } else {
+        //Fetching dat from MONGO - DB MongoDB
+        // const prn = PRN;
+        // const type = "Alumni";
+        // const {data} = await Axios.post("http://localhost:3001/api/user", {
+        //     name, prn, type
+        // }, headers);
+
+        //     toast({
+        //         title: 'Alumni account created.',
+        //         description: "We've created your account for you.",
+        //         status: 'success',
+        //         duration: 9000,
+        //         isClosable: true,
+        //     });
+        //     console.log(data);
+            navigate('/');
+    }else {
         document.getElementById("wrongIDorPass").innerHTML = "Wrong PRN or Password. Please Try Again!";
         document.getElementById("wrongIDorPass").style.color = "red";
       }

@@ -29,6 +29,7 @@ import UpdateStudentProfile from './components/Profiles/ProfileChange/UpdateStud
 import UpdateAlumniProfile from './components/Profiles/ProfileChange/UpdateAlumniProfile';
 import UpdateCoordinatorProfile from './components/Profiles/ProfileChange/UpdateCoordinatorProfile';
 import ChatPage from './components/Chat/ChatPage';
+import ChatProvider from './Context/ChatProvider';
 
 function App() {
   return (
@@ -62,7 +63,7 @@ function App() {
           <Route exact path='/updateStudentProfile' element={<UpdateStudentProfile />}></Route>
           <Route exact path='/updateAlumniProfile' element={<UpdateAlumniProfile />}></Route>
           <Route exact path='/updateCoordinatorProfile' element={<UpdateCoordinatorProfile />}></Route>
-          <Route exact path='/chat' element={<ChatPage/>}></Route>
+          <Route exact path='/chat' element={<ChatProvider><ChatPage/></ChatProvider>}></Route>
 
         </Routes>
       </BrowserRouter>

@@ -1,33 +1,43 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { Box } from '@chakra-ui/react';
+import { margin } from '@mui/system';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ChatState } from '../../Context/ChatProvider';
+import ChatBox from '../miscellaneous/ChatBox';
+import MyChats from '../miscellaneous/MyChats';
+import SideDrawer from '../miscellaneous/SideDrawer';
 
 
-const ChatPage = () => {    
-const [chats, setChats] = useState([]);
-    const navigate = useNavigate();
-    const fetchChats = async () => {
-        const { data } = await axios.get("http://localhost:3001/api/chat");
+const ChatPage = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if(localStorage.getItem("PRN")==null) {
+        console.log("Checked1");
+        navigate('/login');
+    }
+    if(localStorage.getItem("Type") == "Admin"){
+      navigate('/adminDashboard');
+    }
+    if(localStorage.getItem("Type") == "Coordinator"){
+      navigate('/coordinatorDashboard');
+    }
+    //fetchChats(); 
+  }, []);
 
-        setChats(data);
-    };
 
-    useEffect(() => {
-      if(localStorage.getItem("PRN")==null) {
-          console.log("Checked1");
-          navigate('/login');
-      }
-      if(localStorage.getItem("Type") == "Admin"){
-        navigate('/adminDashboard');
-      }
-      if(localStorage.getItem("Type") == "Coordinator"){
-        navigate('/coordinatorDashboard');
-      }
-      fetchChats(); 
-    }, []);
-
+    
+  // const [fetchAgain, setFetchAgain] = useState(false);
+  const { user } = ChatState();
+  //console.log("User : From Chat page");
+  //console.log(user);
   return (
-    <div>{chats.map((chat) => (<div key={chat._id}>{chat.chatName}</div>))}</div>
+    <div style={{ width: "100%", marginTop:"-20px"}}>
+      {user && <SideDrawer />}
+      <Box display="flex"  justifyContent="space-between" width="100%" height="100vh" p="10px">
+        {user && <MyChats  />}
+        {user && <ChatBox/>} 
+      </Box>
+    </div>
   )
 }
 
