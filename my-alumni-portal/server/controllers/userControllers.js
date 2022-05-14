@@ -65,6 +65,7 @@ const authUser = asyncHandler(async(req, res)=>{
     }   
 })
 
+//Delete user from mongo
 const deleteUser = asyncHandler(async(req, res) => {
     const prn = res.body;
     try {
@@ -78,5 +79,18 @@ const deleteUser = asyncHandler(async(req, res) => {
      }
 })
 
+// /api/user
+const allUsers = asyncHandler(async(req, res) => {
+    const keyword = req.query.search 
+    ? {
+        $or: [
+            { name: { $regex: req.query.search, $options: "i" } },
+            { prn: { $regex: req.query.search, $options: "i" } },
+          ],
+    }:{};
+    console.log(keyword);
+    const users = await User.find(keyword).find({ _id: { $ne: req.user._id } });;
+    res.send(users);
+})
 
-module.exports = {registerUser, authUser, deleteUser};
+module.exports = {registerUser, authUser, deleteUser, allUsers};

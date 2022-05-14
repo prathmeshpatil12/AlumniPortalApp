@@ -494,7 +494,7 @@ app.get("/", (req, res) =>{
 app.use('/api/user', userRoutes); 
 
 //Delete Data of user
-app.delete("/api/user/:prn", userRoutes);
+app.delete("/api/user", userRoutes);
 // app.delete("/api/user/:prn", (req, res) => {
 //   const prn = req.params.prn;
 //   console.log(req.params);

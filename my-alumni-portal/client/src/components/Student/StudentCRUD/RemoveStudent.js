@@ -27,9 +27,6 @@ function RemoveStudent() {
         <>
 
             <div className="box-form" id='studentboxform'>
-
-
-
                 <div className="right">
                     <h2 id='h2tag'>Remove Student </h2><br />
                     <Form onSubmit={removeStud}>
