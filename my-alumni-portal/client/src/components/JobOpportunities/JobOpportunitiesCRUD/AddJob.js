@@ -1,9 +1,11 @@
-import { React, useState} from 'react';
+import { React, useState } from 'react';
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import Form from 'react-bootstrap/Form';
+import { Button, ButtonGroup } from '@chakra-ui/react';
+import '../../Internship/InternshipCRUD/AddInternship.css';
 function AddJob() {
-    
+
     const [company_name, setCompanyName] = useState("");
     const [position, setPosition] = useState("");
     const [eligible_batches, setEligibleBatches] = useState("");
@@ -20,9 +22,9 @@ function AddJob() {
         let date = new Date();
         date = date.toISOString().slice(0, 19).replace('T', ' ');
         setDatePosted(date)
-        
+
         let obj = {
-            company_name : company_name,
+            company_name: company_name,
             position: position,
             eligible_batches: eligible_batches,
             eligible_branches: eligible_branches,
@@ -32,11 +34,11 @@ function AddJob() {
         };
 
         const headers = {
-            'Content-Type':'application/json'
+            'Content-Type': 'application/json'
         }
 
         Axios.post('http://localhost:3001/addJob', obj, {
-            headers : headers
+            headers: headers
         }).then(() => {
             document.getElementById('result').innerHTML = "Successfully added Job";
             document.getElementById('result').style.color = "green";
@@ -44,59 +46,65 @@ function AddJob() {
     }
 
     const goToDashboard = () => {
-        if(localStorage.getItem("Type")=="Admin") {
+        if (localStorage.getItem("Type") == "Admin") {
             navigate('/adminDashboard');
-        } else if (localStorage.getItem("Type")=="Student") {
+        } else if (localStorage.getItem("Type") == "Student") {
             navigate('/studentDashboard');
-        } else if (localStorage.getItem("Type")=="Alumni") {
+        } else if (localStorage.getItem("Type") == "Alumni") {
             navigate("/alumniDashboard");
         } else {
             navigate("/coordinatorDashboard");
         }
     }
-  
+
 
     return (
         <>
-            <h2>Add Job</h2>
-            <form onSubmit={addJob}>
-                <label>
-                    <p>Company Name</p>
-                    <input type="text" onChange={e => setCompanyName(e.target.value)}/>
-                </label>
-                <br></br>
-                <label>
-                    <p>Position</p>
-                    <input type="text" onChange={e => setPosition(e.target.value)}/>
-                </label>
-                <br></br>
-                <label>
-                    <p>Eligible Batches</p>
-                    <input type="text" onChange={e => setEligibleBatches(e.target.value)}/>
-                </label>
-                <br></br>
-                <label>
-                    <p>Eligible Branches</p>
-                    <input type="text" onChange={e => setEligibleBrances(e.target.value)}/>
-                </label>
-                <br></br>
-                <label>
-                    <p>Experience Required</p>
-                    <input type="text" onChange={e => setExperienceRequired(e.target.value)}/>
-                </label>
-                <br></br>
-                <label>
-                    <p>Registration Link</p>
-                    <input type="text" onChange={e => setRegistrationLink(e.target.value)}/>
-                </label>
+            <div className="box-form" id='studentboxform'>
 
-                <div>
-                    <button className='submitbtn' type="submit">Add Job</button>
-                </div>
-            </form>
 
-            <h3 id='result'></h3>
-            <button onClick={goToDashboard}>Go back to Dashboard</button>
+
+                <div className="right">
+                    <h2 id='h2tag'>Add Jobs </h2><br />
+                    <Form onSubmit={addJob}>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label><b>Company Name</b></Form.Label>
+                            <Form.Control type="text" onChange={e => setCompanyName(e.target.value)} />
+
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Label><b>Position</b></Form.Label>
+                            <Form.Control type="text" onChange={e => setPosition(e.target.value)} />
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Label><b>Eligible Batches</b></Form.Label>
+                            <Form.Control type="text" onChange={e => setEligibleBatches(e.target.value)} />
+                        </Form.Group>
+
+
+                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Label><b>Experience Required</b></Form.Label>
+                            <Form.Control type="text" onChange={e => setExperienceRequired(e.target.value)} />
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Label><b>Registration Link</b></Form.Label>
+                            <Form.Control type="text" onChange={e => setRegistrationLink(e.target.value)} />
+                        </Form.Group>
+
+                        <div className='button'>
+                            <div id='wrongIDorPass'></div>
+                            <Button variant="success" className='submitbtn' type="submit">Update Profile</Button>{' '}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Button variant="primary" onClick={goToDashboard}>Dashboard</Button>{' '}
+                            <br />
+
+
+                        </div>
+                    </Form>
+                    <br />
+                    <br />
+                </div></div >
         </>
     );
 }

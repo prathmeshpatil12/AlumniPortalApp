@@ -1,7 +1,9 @@
 import { React, useState} from 'react';
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import Form from 'react-bootstrap/Form';
+import { Button, ButtonGroup } from '@chakra-ui/react';
+import './AddInternship.css';
 function AddInternship() {
     
     const [company_name, setCompanyName] = useState("");
@@ -58,45 +60,55 @@ function AddInternship() {
 
     return (
         <>
-            <h2>Add Internship</h2>
-            <form onSubmit={addInternship}>
-                <label>
-                    <p>Company Name</p>
-                    <input type="text" onChange={e => setCompanyName(e.target.value)}/>
-                </label>
-                <br></br>
-                <label>
-                    <p>Position</p>
-                    <input type="text" onChange={e => setPosition(e.target.value)}/>
-                </label>
-                <br></br>
-                <label>
-                    <p>Eligible Batches</p>
-                    <input type="text" onChange={e => setEligibleBatches(e.target.value)}/>
-                </label>
-                <br></br>
-                <label>
-                    <p>Eligible Branches</p>
-                    <input type="text" onChange={e => setEligibleBrances(e.target.value)}/>
-                </label>
-                <br></br>
-                <label>
-                    <p>Experience Required</p>
-                    <input type="text" onChange={e => setExperienceRequired(e.target.value)}/>
-                </label>
-                <br></br>
-                <label>
-                    <p>Registration Link</p>
-                    <input type="text" onChange={e => setRegistrationLink(e.target.value)}/>
-                </label>
+        
+        <div className="box-form" id='studentboxform'>
 
-                <div>
-                    <button className='submitbtn' type="submit">Add Internship</button>
-                </div>
-            </form>
+        
 
-            <h3 id='result'></h3>
-            <button onClick={goToDashboard}>Go back to Dashboard</button>
+<div className="right">
+<h2 id='h2tag'>Add Internship </h2><br/>
+  <Form onSubmit={addInternship}>
+    <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form.Label><b>Company Name</b></Form.Label>
+      <Form.Control type="text" onChange={e => setCompanyName(e.target.value)} />
+
+    </Form.Group>
+
+    <Form.Group className="mb-3" controlId="formBasicPassword">
+      <Form.Label><b>Position</b></Form.Label>
+      <Form.Control type="text" onChange={e => setPosition(e.target.value)}  />
+    </Form.Group>
+
+    <Form.Group className="mb-3" controlId="formBasicPassword">
+      <Form.Label><b>Eligible Batches</b></Form.Label>
+      <Form.Control type="text" onChange={e => setEligibleBatches(e.target.value)}/>
+    </Form.Group>
+
+
+    <Form.Group className="mb-3" controlId="formBasicPassword">
+      <Form.Label><b>Experience Required</b></Form.Label>
+      <Form.Control type="text" onChange={e => setExperienceRequired(e.target.value)} />
+    </Form.Group>
+
+    <Form.Group className="mb-3" controlId="formBasicPassword">
+      <Form.Label><b>Registration Link</b></Form.Label>
+      <Form.Control type="text" onChange={e => setRegistrationLink(e.target.value)}/>
+    </Form.Group>
+
+    <div className='button'>
+      <div id='wrongIDorPass'></div>
+      <Button variant="success" className='submitbtn' type="submit">Update Profile</Button>{' '}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Button variant="primary" onClick={goToDashboard}>Dashboard</Button>{' '}
+      <br />
+
+
+    </div>
+  </Form>
+  <br />
+  <br />
+  </div></div>
+        
+            
+            
         </>
     );
 }
