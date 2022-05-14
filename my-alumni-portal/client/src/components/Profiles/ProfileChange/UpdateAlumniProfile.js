@@ -12,6 +12,9 @@ import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap';
 function UpdateAlumniProfile() {
 
   const [name, setName] = useState("");
+  const [current_work, setCurrentWork] = useState("");
+  const [masters_institute_india, setMastersInstituteIndia] = useState("");
+  const [masters_university_abroad, setMastersUniversityAbroad] = useState(""); 
   const [current_company, setCurrentCompany] = useState("");
   const [department, setDepartment] = useState("");
   const [passout_year, setPassoutYear] = useState();
@@ -26,6 +29,9 @@ function UpdateAlumniProfile() {
     let obj = {
         PRN: localStorage.getItem("PRN"),
         name: name,
+        current_work: current_work,
+        masters_institute_india: masters_institute_india,
+        masters_university_abroad: masters_university_abroad,
         current_company: current_company,
         department: department,
         passout_year: passout_year,
@@ -51,6 +57,10 @@ function UpdateAlumniProfile() {
   const handleDepartmentChange = (event) => {
       setDepartment(event.target.value);
   }
+
+  const handleWorkChange = (event) => {
+    setCurrentWork(event.target.value);
+}
 
   const logout = () => {
     localStorage.removeItem("PRN");
@@ -120,8 +130,31 @@ function UpdateAlumniProfile() {
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label><b>Current Work</b></Form.Label>
+            <select onChange={handleWorkChange}>
+              <option value="NULL">Select Option</option>
+              <option value="Working in India">Working in India</option>
+              <option value="Working abroad">Working abroad</option>
+              <option value="Pursuing Masters in India">Pursuing Masters in India</option>
+              <option value="Pursuing Masters Abroad">Pursuing Masters Abroad</option>
+              <option value="Preparing for Masters in India">Preparing for Masters in India</option>
+              <option value="Preparing for Masters Abroad">Preparing for Masters Abroad</option>
+            </select>
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label><b>Current Company</b></Form.Label>
             <Form.Control type="text" onChange={e => setCurrentCompany(e.target.value)} />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label><b>Master's Institute India</b></Form.Label>
+            <Form.Control type="text" onChange={e => setMastersInstituteIndia(e.target.value)} />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label><b>Master's University Abroad</b></Form.Label>
+            <Form.Control type="text" onChange={e => setMastersUniversityAbroad(e.target.value)} />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -157,7 +190,7 @@ function UpdateAlumniProfile() {
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label><b>Linkdin Profile Link </b></Form.Label>
-            <Form.Control type="text" onChange={e => setEmailId(e.target.value)} />
+            <Form.Control type="text" onChange={e => setLinkdinProfile(e.target.value)} />
           </Form.Group>
 
           <div className='button'>

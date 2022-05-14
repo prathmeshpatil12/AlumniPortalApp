@@ -40,6 +40,7 @@ function StudentDashboard() {
                       <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
                           <Nav.Link href="#features"><b>Chat System</b> </Nav.Link>
+                          <Nav.Link href="/viewAlumni"><b>Search Alumni</b> </Nav.Link>
                           <Nav.Link href="/viewInternships"><b>Internship Opportunities</b> </Nav.Link>
                           <Nav.Link href="/viewJobs"><b>Job Opportunities</b> </Nav.Link>
                           <Nav.Link href="/viewEvents"><b>Events and Workshops</b> </Nav.Link>
