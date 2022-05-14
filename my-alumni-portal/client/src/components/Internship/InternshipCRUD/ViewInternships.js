@@ -4,12 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-<<<<<<< HEAD
-import Button from 'react-bootstrap/Button';
-
-function ViewInternships() {
-    const[internshipList, setInternshipList] = useState([]);
-=======
 //import Button from 'react-bootstrap/Button';
 import { Button, ButtonGroup } from '@chakra-ui/react';
 import Form from 'react-bootstrap/Form';
@@ -22,20 +16,15 @@ function ViewInternships() {
     const [internshipList, setInternshipList] = useState([]);
     const [filter, setFilter] = useState("");
     const [value, setValue] = useState("");
->>>>>>> ab876bdf
 
     let navigate = useNavigate();
 
 
     useEffect(() => {
-<<<<<<< HEAD
-        Axios.get('http://localhost:3001/getInternships').then((response) => {
-=======
         
         let toReq = 'http://localhost:3001/getInternships/' + 'all/' + 'all';
 
         Axios.get(toReq).then((response) => {
->>>>>>> ab876bdf
             const someList = response.data;
             setInternshipList(someList);
             console.log(internshipList);
@@ -149,7 +138,44 @@ function ViewInternships() {
                     </Form>
 
 
-            <div id='rowlist'>
+                    <div id='rowlist'>
+
+                        <Row xs={3} md={2} className="g-4">
+                            {internshipList.map((val, key) => (
+                                <Col>
+                                    <Card id="card-bd">
+                                        <Card.Body >
+                                            <Card.Title>{val.company_name}</Card.Title>
+                                            <Card.Subtitle>
+                                                Position : {val.position}
+                                            </Card.Subtitle>
+                                            <hr></hr>
+                                            <Card.Text>
+                                                Eligible Batches : {val.eligible_batches}
+                                            </Card.Text>
+                                            <Card.Text>
+                                                Eligible Branches : {val.eligible_branches}
+                                            </Card.Text>
+                                            <Card.Text>
+                                                Experience Required : {val.experience_required}
+                                            </Card.Text>
+                                            <br />
+                                            <a href={val.registration_link} target="_blank">
+                                                <Button colorScheme='purple' variant='solid' size='sm' id="btnbtn">
+                                                    Register
+                                                </Button>
+                                            </a>
+                                            <br />
+                                            <br />
+                                            <Card.Footer>
+                                                Date Posted : {val.date_posted.slice(0, 10).split('-').reverse().join('-')}
+                                            </Card.Footer>
+                                        </Card.Body>
+                                    </Card>
+                                </Col>
+                            ))}
+                        </Row>
+                </div>
 
         </>
     )
