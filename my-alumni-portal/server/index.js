@@ -265,15 +265,35 @@ app.post("/addInternship", (req, res) => {
 
 
 // Admin reads Coordinator data
-app.get("/getInternships", (req, res) => {
-  db.query("SELECT * FROM Internship", (err, result) => {
-    if(err) {
-      console.log(err);
-    } else {
-      res.send(result);
+app.get("/getInternships/:filter/:val", (req, res) => {
+  console.log(req.params);
+  if(req.params.filter == 'all'){
+    db.query("SELECT * FROM Internship", (err, result) => {
+      if(err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
     }
-  });
+    );
+  }
+  else {
+    let query = "SELECT * FROM Internship WHERE " + req.params.filter + " LIKE '%" + req.params.val + "%'";
+    console.log(query);
+    db.query(query, (err, result) => {
+      if(err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    })
+  }
+  
 });
+
+
+// Filters internship data
+
 
 
 
@@ -490,8 +510,15 @@ app.get("/", (req, res) =>{
   res.send("<h1>Server is running</h1>");
 });
 
-//Get, Post Data of user
+//Post Data of user
 app.use('/api/user', userRoutes); 
+
+//Delete Data of user
+app.delete("/api/user/:prn", userRoutes);
+// app.delete("/api/user/:prn", (req, res) => {
+//   const prn = req.params.prn;
+//   console.log(req.params);
+// });
 
 app.use(notFound);
 app.use(errorHandler);
