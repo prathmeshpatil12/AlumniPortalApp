@@ -65,4 +65,18 @@ const authUser = asyncHandler(async(req, res)=>{
     }   
 })
 
-module.exports = {registerUser, authUser};
+const deleteUser = asyncHandler(async(req, res) => {
+    const prn = res.body;
+    try {
+        const user = await User.deleteOne(prn);
+        res.json({
+            deleted: "true"
+        });
+     } catch (e) {
+        res.status(400);
+        throw new Error("User not deleted");
+     }
+})
+
+
+module.exports = {registerUser, authUser, deleteUser};
