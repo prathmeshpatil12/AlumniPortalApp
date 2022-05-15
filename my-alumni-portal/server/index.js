@@ -2,20 +2,12 @@ const express = require('express');
 const app = express();
 const mysql = require('mysql');
 const cors = require('cors');
-const bodyParser = require('body-parser')
-const {chats} = require("./data/dummyData");
-const connectDB = require('./config/mongodb');
-const userRoutes = require('./routes/userRoutes');
-const chatRoutes = require('./routes/chatRoutes');
-const { notFound, errorHandler } = require("./middleware/errorMiddleware");
-
-connectDB();
+const bodyParser = require('body-parser');
 
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
-
 
 const db = mysql.createConnection({
     user: 'root',
@@ -291,6 +283,7 @@ app.get("/getInternships/:filter/:val", (req, res) => {
   }
   else {
     let query = "SELECT * FROM Internship WHERE " + req.params.filter + " LIKE '%" + req.params.val + "%'";
+    console.log(query);
     db.query(query, (err, result) => {
       if(err) {
         console.log(err);
@@ -544,45 +537,3 @@ app.put('/updateCoordinatorDetail', (req, res) => {
   }
   )
 })
-
-
-
-//--------------------------------------------------------------------------------------------------------------------
-//--------------------------------------------------------------------------------------------------------------------
-// MongoDB : APIs for CHAT SYSTEM ------------------------------------------------------------------------------------
-
-//Test
-app.get("/", (req, res) =>{
-  res.send("<h1>Server is running</h1>");
-});
-
-//Post Data of user
-app.use('/api/user', userRoutes); 
-
-//Delete Data of user
-app.delete("/api/user", userRoutes);
-// app.delete("/api/user/:prn", (req, res) => {
-//   const prn = req.params.prn;
-//   console.log(req.params);
-// });
-
-app.use("/api/chat", chatRoutes);
-
-app.use(notFound);
-app.use(errorHandler);
-
-
-
-/*
-//Chat Reply
-app.get("/api/chat", (req, res) =>{
-  res.send(chats);
-});
-
-//-------
-app.get("/api/chat/:id", (req, res) =>{
-  //console.log(req.params.id)
-  singlechat = chats.find((c) => c._id === req.params.id)
-  res.send(singlechat);
-});
-*/
