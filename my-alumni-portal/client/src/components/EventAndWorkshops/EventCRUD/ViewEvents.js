@@ -6,17 +6,20 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 //import Button from 'react-bootstrap/Button';
 import { Button, ButtonGroup } from '@chakra-ui/react';
+import Form from 'react-bootstrap/Form';
 import '../../Internship/InternshipCRUD/ViewInternship.css';
 import pic4 from "../../../kit.png";
 function ViewEvents() {
     const[eventList, setEventList] = useState([]);
+    const [filter, setFilter] = useState("");
+    const [value, setValue] = useState("");
 
     let navigate = useNavigate();
 
     useEffect(() => {
         
-
-        Axios.get('http://localhost:3001/getEvents').then((response) => {
+        let toReq = 'http://localhost:3001/getEvents/' + 'all/' + 'all';
+        Axios.get(toReq).then((response) => {
             const someList = response.data;
             setEventList(someList);
             console.log(eventList);
@@ -35,6 +38,24 @@ function ViewEvents() {
         }
     }
 
+    const handleFilterChange = (event) => {
+        setFilter(event.target.value);
+    }
+
+    const applyFilter = (e) => {
+        e.preventDefault();
+
+        let toReq = 'http://localhost:3001/getEvents/' + filter + '/' + value;
+        console.log(toReq);
+
+        Axios.get(toReq).then((response) => {
+            const someList = response.data;
+            setEventList(someList);
+            console.log(eventList);
+        });
+
+    }
+
     const addEvent = () => {
         navigate('/addEvent');
     }
@@ -42,41 +63,65 @@ function ViewEvents() {
     return (
         <>
 
-<div className="jumbotron jumbotron-billboard">
-                <div className="img"></div>
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-6">
-                            <img src={pic4} className="img-fluid rounded thumbnail-image" />
-                        </div>
-                        <div className='col-lg-6'>
-                            <div className='center1'>
-                                <br />
-                                <Button colorScheme='purple' variant='solid' size='sm' id="btnbtn1" isDisabled="true">
-                                    Events and Workshops
-                                </Button>
-                                <br /><br />
+        <div className="jumbotron jumbotron-billboard">
+            <div className="img"></div>
+            <div className="container">
+                <div className="row">
+                    <div className="col-lg-6">
+                        <img src={pic4} className="img-fluid rounded thumbnail-image" />
+                    </div>
+                    <div className='col-lg-6'>
+                        <div className='center1'>
+                            <br />
+                            <Button colorScheme='purple' variant='solid' size='sm' id="btnbtn1" isDisabled="true">
+                                Events and Workshops
+                            </Button>
+                            <br /><br />
 
-                                <Button size='md'
-                                    height='48px'
-                                    width='200px'
-                                    border='2px'
-                                    borderColor='blackAlpha.500' colorScheme='purple' variant='outline' onClick={goToDashboard}>
-                                    Go back to Dashboard
-                                </Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <Button size='md'
-                                    height='48px'
-                                    width='200px'
-                                    border='2px'
-                                    borderColor='blackAlpha.500' colorScheme='purple' variant='outline' onClick={addEvent}>
-                                    Add Event
-                                </Button>
-                            </div>
+                            <Button size='md'
+                                height='48px'
+                                width='200px'
+                                border='2px'
+                                borderColor='blackAlpha.500' colorScheme='purple' variant='outline' onClick={goToDashboard}>
+                                Go back to Dashboard
+                            </Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <Button size='md'
+                                height='48px'
+                                width='200px'
+                                border='2px'
+                                borderColor='blackAlpha.500' colorScheme='purple' variant='outline' onClick={addEvent}>
+                                Add Event
+                            </Button>
                         </div>
                     </div>
                 </div>
             </div>
-            <br />
+        </div>
+        <br />
+
+        <h2 id='h2tag'>Filters </h2><br />
+        <Form onSubmit={applyFilter}>
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label><b>Filter on</b></Form.Label>
+            <select onChange={handleFilterChange}>
+                <option value="all">Select Option</option>
+                <option value="nature_of_event">Event Type</option>
+                <option value="mode_of_event">Mode of Event</option>
+            </select>
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label><b>Value</b></Form.Label>
+                <Form.Control type="text" onChange={e => setValue(e.target.value)} />
+            </Form.Group>
+
+            
+
+            <div className='button'>
+                <Button variant="success" className='submitbtn' type="submit">Apply Filter</Button>{' '}
+                <br />
+            </div>
+        </Form>
 
         <div id='rowlist'>
 
