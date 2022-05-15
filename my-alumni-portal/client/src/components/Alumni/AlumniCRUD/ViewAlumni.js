@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
 import { Button, ButtonGroup } from '@chakra-ui/react';
+import '../../Internship/InternshipCRUD/ViewInternship.css';
 
 
 
@@ -47,17 +48,15 @@ function ViewAlumni() {
 
     return (
         <>
-        <h2>Alumni List</h2>
-        <br />
-        <button onClick={goToDashboard}>Go back to Dashboard</button>
-        <br />
-        <br />
+        <h3>Alumni List</h3>
+
+        <div className='col-sm-3' id='filter'>
 
         <h2 id='h2tag'>Filters </h2><br />
         <Form onSubmit={applyFilter}>
             <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label><b>Filter on</b></Form.Label>
-            <select onChange={handleFilterChange}>
+            <Form.Label>Filter on</Form.Label>
+            <select onChange={handleFilterChange} id='select'>
                 <option value="all">Select Option</option>
                 <option value="current_company">Current Company</option>
                 <option value="masters_institute_india">Masters Institute India</option>
@@ -66,17 +65,18 @@ function ViewAlumni() {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label><b>Value</b></Form.Label>
+                <Form.Label>Value</Form.Label>
                 <Form.Control type="text" onChange={e => setValue(e.target.value)} />
             </Form.Group>
 
             
 
-            <div className='button'>
-                <Button variant="success" className='submitbtn' type="submit">Apply Filter</Button>{' '}
-                <br />
-            </div>
+            <Button colorScheme='purple' variant='solid' size='sm' id="btnbtn">
+                                            Apply Filter
+                                        </Button>
+                    <br />
         </Form>
+        </div>
 
         <br />
         <br />
