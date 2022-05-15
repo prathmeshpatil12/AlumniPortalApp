@@ -33,3 +33,12 @@
     opacity: 0.8;
     padding: 1.5rem;
 }
+
+#filter{
+    padding-left: 30px;
+}
+
+#select{
+    border: #000;
+    border-radius: 20px;
+}

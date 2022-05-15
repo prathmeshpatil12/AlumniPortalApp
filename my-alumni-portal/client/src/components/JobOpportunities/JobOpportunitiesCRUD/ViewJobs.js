@@ -101,12 +101,13 @@ function ViewJobs() {
                 </div>
             </div>
             <br />
+            <div className='col-sm-3' id='filter'>
 
             <h2 id='h2tag'>Filters </h2><br />
             <Form onSubmit={applyFilter}>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label><b>Filter on</b></Form.Label>
-                <select onChange={handleFilterChange}>
+                <Form.Label>Filter on</Form.Label><br/>
+                <select onChange={handleFilterChange} id='select'>
                     <option value="all">Select Option</option>
                     <option value="company_name">Company</option>
                     <option value="eligible_batches">Eligible Batches</option>
@@ -115,17 +116,18 @@ function ViewJobs() {
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label><b>Value</b></Form.Label>
+                    <Form.Label>Value</Form.Label>
                     <Form.Control type="text" onChange={e => setValue(e.target.value)} />
                 </Form.Group>
 
                 
 
-                <div className='button'>
-                    <Button variant="success" className='submitbtn' type="submit">Apply Filter</Button>{' '}
+                <Button colorScheme='purple' variant='solid' size='sm' id="btnbtn">
+                                            Apply Filter
+                                        </Button>
                     <br />
-                </div>
             </Form>
+                </div>
 
             <div  id='rowlist'> 
             <Row xs={3} md={2} className="g-4" >
