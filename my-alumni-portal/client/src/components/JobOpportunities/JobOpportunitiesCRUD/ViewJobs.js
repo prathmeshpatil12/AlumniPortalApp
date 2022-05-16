@@ -122,7 +122,7 @@ function ViewJobs() {
 
                 
 
-                <Button colorScheme='purple' variant='solid' size='sm' id="btnbtn">
+                <Button colorScheme='purple' variant='solid' size='sm' id="btnbtn" type='submit'>
                                             Apply Filter
                                         </Button>
                     <br />

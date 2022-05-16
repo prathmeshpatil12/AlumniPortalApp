@@ -13,7 +13,6 @@ import './ViewInternship.css'
 import pic4 from "../../../kit.png";
 
 function ViewInternships() {
-    console.log("viewInternship")
     const [internshipList, setInternshipList] = useState([]);
     const [filter, setFilter] = useState("");
     const [value, setValue] = useState("");
@@ -124,7 +123,7 @@ function ViewInternships() {
                     <Form.Control type="text" onChange={e => setValue(e.target.value)} />
                 </Form.Group>
 
-                    <Button colorScheme='purple' variant='solid' size='sm' id="btnbtn">
+                    <Button colorScheme='purple' variant='solid' size='sm' id="btnbtn" type='submit'>
                                             Apply Filter
                                         </Button>
                     <br />
