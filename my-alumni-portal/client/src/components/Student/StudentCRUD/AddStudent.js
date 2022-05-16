@@ -38,23 +38,15 @@ function AddStudent() {
             //Adding data in MySQL
             axios.post('http://localhost:3001/addStudent', obj, {
                 headers: headers
-            })
-
-            //Adding Student data in MongoDB
-            const prn = PRN;
-            const type = "Student";
-            const { data } = await axios.post("http://localhost:3001/api/user", {
-                name, prn, type
-            }, headers);
-
-            toast({
-                title: 'Student account created.',
-                description: "We've created your account for you.",
-                status: 'success',
-                duration: 9000,
-                isClosable: true,
+            }).then(()=> {
+                toast({
+                    title: 'Student account created.',
+                    description: "We've created your account for you.",
+                    status: 'success',
+                    duration: 9000,
+                    isClosable: true,
+                });
             });
-            console.log(data);
         }
     }
 

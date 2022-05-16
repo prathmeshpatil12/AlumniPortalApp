@@ -13,6 +13,7 @@ import './ViewInternship.css'
 import pic4 from "../../../kit.png";
 
 function ViewInternships() {
+    console.log("viewInternship")
     const [internshipList, setInternshipList] = useState([]);
     const [filter, setFilter] = useState("");
     const [value, setValue] = useState("");
@@ -40,6 +41,7 @@ function ViewInternships() {
     }
 
     const applyFilter = (e) => {
+        console.log("applyFilter")
         e.preventDefault();
 
         let toReq = 'http://localhost:3001/getInternships/' + filter + '/' + value;

@@ -33,13 +33,11 @@ function StudentDashboard() {
               <Navbar collapseOnSelect expand="lg" >
                     <Container>
                 <div className="col-lg-2"><img src={pic4} className="img-fluid rounded thumbnail-image" /> </div>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    
-
                       <Navbar.Brand href="/"><b>Alumni Portal</b> </Navbar.Brand>
                       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                       <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
-                          <Nav.Link href="/chat"><b>Chat System</b> </Nav.Link>
+                          <Nav.Link href="/#"><b>Chat System</b> </Nav.Link>
                           <Nav.Link href="/viewAlumni"><b>Search Alumni</b> </Nav.Link>
                           <Nav.Link href="/viewInternships"><b>Internship Opportunities</b> </Nav.Link>
                           <Nav.Link href="/viewJobs"><b>Job Opportunities</b> </Nav.Link>

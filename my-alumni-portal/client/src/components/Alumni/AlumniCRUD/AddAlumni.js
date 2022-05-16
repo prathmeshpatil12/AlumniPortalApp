@@ -39,19 +39,7 @@ function AddAlumni() {
 
             axios.post('http://localhost:3001/addAlumni', obj, {
                 headers : headers
-            })
-            // .then(() => {
-            //     document.getElementById('result').innerHTML = "Successfully added Alumni";
-            //     document.getElementById('result').style.color = "green";
-            // });
-
-            //Adding Alumni data in MongoDB
-            const prn = PRN;
-            const type = "Alumni";
-            const {data} = await axios.post("http://localhost:3001/api/user", {
-                name, prn, type
-            }, headers);
-
+            }).then(() => {
                 toast({
                     title: 'Alumni account created.',
                     description: "We've created your account for you.",
@@ -59,7 +47,12 @@ function AddAlumni() {
                     duration: 9000,
                     isClosable: true,
                 });
-                console.log(data);
+            });
+            // .then(() => {
+            //     document.getElementById('result').innerHTML = "Successfully added Alumni";
+            //     document.getElementById('result').style.color = "green";
+            // });
+
         }
     }
 
