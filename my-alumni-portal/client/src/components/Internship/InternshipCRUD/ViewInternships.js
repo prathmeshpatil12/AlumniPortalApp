@@ -23,7 +23,7 @@ function ViewInternships() {
     useEffect(() => {
         
         let toReq = 'http://localhost:3001/getInternships/' + 'all/' + 'all';
-
+        console.log("1" + toReq);
         Axios.get(toReq).then((response) => {
             const someList = response.data;
             setInternshipList(someList);

@@ -48,7 +48,7 @@ function ViewAlumni() {
 
     return (
         <>
-        <h3>Alumni List</h3>
+        <h1>Alumni List</h1>
 
         <div className='col-sm-3' id='filter'>
 
