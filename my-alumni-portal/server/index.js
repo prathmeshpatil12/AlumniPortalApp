@@ -3,6 +3,7 @@ const app = express();
 const mysql = require('mysql');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const nodemailer = require('nodemailer');
 
 app.use(cors());
 app.use(express.json());
@@ -537,4 +538,43 @@ app.put('/updateCoordinatorDetail', (req, res) => {
     }
   }
   )
-})
+});
+
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'alumniportalkit@gmail.com',
+    pass: 'Alumni@123'
+  }
+});
+
+
+// Student asks Doubt
+app.post("/askDoubt", (req, res) => {
+  const recieverEmailId = req.body.recieverEmailId;
+  const recieverName = req.body.recieverName;
+  const senderEmailId = req.body.senderEmailId;
+  const senderName = req.body.senderName;
+  const subject = req.body.subject;
+  const doubt = req.body.doubt;
+
+
+  var mailOptions = {
+    from: 'alumniportalkit@gmail.com',
+    to: recieverEmailId,
+    cc: senderEmailId,
+    subject: 'Doubt regarding ' + subject,
+    text: 'Hi ' + recieverName + ',\n' + 'Student named ' + senderName + ' has doubt.\n\n\n' + 'Doubt : ' + doubt + '\n\n\n You can reply to current email thread. \n\nNote: While replying please copy the email ID in cc and add it to cc of your reply. \n\nThank you for considering.\n\n Yours Sincerely, \nAlumni Portal of KIT'
+  };
+
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+      res.send("Mail Sent!");
+    }
+  });
+  
+
+});

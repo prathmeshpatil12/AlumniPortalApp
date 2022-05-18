@@ -48,10 +48,7 @@ function AddAlumni() {
                     isClosable: true,
                 });
             });
-            // .then(() => {
-            //     document.getElementById('result').innerHTML = "Successfully added Alumni";
-            //     document.getElementById('result').style.color = "green";
-            // });
+            
 
         }
     }

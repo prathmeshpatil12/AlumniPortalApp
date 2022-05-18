@@ -28,6 +28,7 @@ import ChangePassword from './components/Profiles/PasswordChange/ChangePassword'
 import UpdateStudentProfile from './components/Profiles/ProfileChange/UpdateStudentProfile';
 import UpdateAlumniProfile from './components/Profiles/ProfileChange/UpdateAlumniProfile';
 import UpdateCoordinatorProfile from './components/Profiles/ProfileChange/UpdateCoordinatorProfile';
+import AskDoubt from './components/Doubt/AskDoubt';
 
 
 function App() {
@@ -62,6 +63,7 @@ function App() {
           <Route exact path='/updateStudentProfile' element={<UpdateStudentProfile />}></Route>
           <Route exact path='/updateAlumniProfile' element={<UpdateAlumniProfile />}></Route>
           <Route exact path='/updateCoordinatorProfile' element={<UpdateCoordinatorProfile />}></Route>
+          <Route exact path='/askDoubt' element={<AskDoubt />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

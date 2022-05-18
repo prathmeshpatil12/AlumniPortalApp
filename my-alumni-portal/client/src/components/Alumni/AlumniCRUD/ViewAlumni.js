@@ -31,6 +31,10 @@ function ViewAlumni() {
         setFilter(event.target.value);
     }
 
+    const emailAlumni = (name, email_id) => {
+        navigate('/askDoubt', {state:{"Name":name, "Email Id":email_id}});
+    }
+
     const applyFilter = (e) => {
         e.preventDefault();
 
@@ -57,7 +61,7 @@ function ViewAlumni() {
             <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Filter on</Form.Label>
             <select onChange={handleFilterChange} id='select'>
-                <option value="all">Select Option</option>
+                <option value="all">No Filter</option>
                 <option value="current_company">Current Company</option>
                 <option value="masters_institute_india">Masters Institute India</option>
                 <option value="masters_university_abroad">Masters University Abroad</option>
@@ -72,9 +76,9 @@ function ViewAlumni() {
             
 
             <Button colorScheme='purple' variant='solid' size='sm' id="btnbtn" type='submit'>
-                                            Apply Filter
-                                        </Button>
-                    <br />
+                Apply Filter
+            </Button>
+            <br />
         </Form>
         </div>
 
@@ -112,6 +116,7 @@ function ViewAlumni() {
                                 <td>{val.contact_number}</td>
                                 <td>{val.email_id}</td>
                                 <td>{val.linkdin_profile}</td>
+                                <td><Button onClick={() => emailAlumni(val.name, val.email_id)}>Ask a Doubt!</Button></td>
                             </tr>
                         )
                     })
