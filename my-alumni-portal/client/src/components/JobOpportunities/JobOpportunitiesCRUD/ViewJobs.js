@@ -123,9 +123,9 @@ function ViewJobs() {
                 
 
                 <Button colorScheme='purple' variant='solid' size='sm' id="btnbtn" type='submit'>
-                                            Apply Filter
-                                        </Button>
-                    <br />
+                    Apply Filter
+                </Button>
+                <br />
             </Form>
                 </div>
 
@@ -155,6 +155,9 @@ function ViewJobs() {
                                 </a>
                                 <br />
                                 <br />
+                                <Card.Footer>
+                                    Last Day to Apply : {val.last_date_to_apply.slice(0, 10).split('-').reverse().join('-')}
+                                </Card.Footer>
                                 <Card.Footer>
                                     Date Posted : {val.date_posted.slice(0, 10).split('-').reverse().join('-')}
                                 </Card.Footer>

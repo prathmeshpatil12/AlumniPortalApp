@@ -9,12 +9,9 @@ import './UpdateStudentProfile.css';
 function UpdateCoordinatorProfile() {
 
   const [name, setName] = useState("");
-  const [current_company, setCurrentCompany] = useState("");
   const [department, setDepartment] = useState("");
-  const [passout_year, setPassoutYear] = useState();
   const [contact_number, setContactNumber] = useState("");
   const [email_id, setEmailId] = useState("");
-  const [linkdin_profile, setLinkdinProfile] = useState("");
   let navigate = useNavigate();
 
   const handleSubmit = e => {

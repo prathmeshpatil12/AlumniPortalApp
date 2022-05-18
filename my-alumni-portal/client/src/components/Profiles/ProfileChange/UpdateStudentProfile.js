@@ -165,7 +165,7 @@ function UpdateStudentProfile() {
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label><b>Expected Passing Year</b></Form.Label>
-              <Form.Control type="text" onChange={e => setAdmissionYear(e.target.value)} />
+              <Form.Control type="text" onChange={e => setPassoutYear(e.target.value)} />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -196,7 +196,7 @@ function UpdateStudentProfile() {
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label><b>Linkdin Profile Link </b></Form.Label>
-              <Form.Control type="text" onChange={e => setEmailId(e.target.value)} />
+              <Form.Control type="text" onChange={e => setLinkdinProfile(e.target.value)} />
             </Form.Group>
 
             <div className='button'>

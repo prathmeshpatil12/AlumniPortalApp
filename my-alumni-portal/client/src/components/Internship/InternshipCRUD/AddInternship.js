@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import { Button, ButtonGroup } from '@chakra-ui/react';
 import './AddInternship.css';
+import { useToast } from '@chakra-ui/react';
+
+
 function AddInternship() {
 
   const [company_name, setCompanyName] = useState("");
@@ -12,16 +15,21 @@ function AddInternship() {
   const [eligible_branches, setEligibleBrances] = useState("");
   const [experience_required, setExperienceRequired] = useState("");
   const [date_posted, setDatePosted] = useState("");
+  const [last_date_to_apply, setLastDayToApply] = useState("");
   const [registration_link, setRegistrationLink] = useState("");
 
   let navigate = useNavigate();
+  let toast = useToast();
 
   const addInternship = (e) => {
     e.preventDefault();
 
     let date = new Date();
-    date = date.toISOString().slice(0, 19).replace('T', ' ');
-    setDatePosted(date)
+    date = date.toISOString().slice(0, 10).replace('T', ' ');
+    setDatePosted(date);
+
+    let last_date = new Date(last_date_to_apply);
+    last_date = last_date.toISOString().slice(0, 10).replace('T', ' ');
 
     let obj = {
       company_name: company_name,
@@ -29,7 +37,8 @@ function AddInternship() {
       eligible_batches: eligible_batches,
       eligible_branches: eligible_branches,
       experience_required: experience_required,
-      date_posted: date_posted,
+      date_posted: date,
+      last_date_to_apply: last_date,
       registration_link: registration_link
     };
 
@@ -39,9 +48,14 @@ function AddInternship() {
 
     Axios.post('http://localhost:3001/addInternship', obj, {
       headers: headers
-    }).then(() => {
-      document.getElementById('result').innerHTML = "Successfully added Internship";
-      document.getElementById('result').style.color = "green";
+    }).then((response) => {
+      toast({
+        title: 'Internship added successfully',
+        description: "We've added you internship successfully. You can view Internship in View Internship section in Dashboard",
+        status: 'success',
+        duration: 9000,
+        isClosable: true,
+    });
     });
   }
 
@@ -91,16 +105,19 @@ function AddInternship() {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label><b>Last Day to Apply</b></Form.Label>
+                <Form.Control type="date" onChange={e => setLastDayToApply(e.target.value)} />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label><b>Registration Link</b></Form.Label>
               <Form.Control type="text" onChange={e => setRegistrationLink(e.target.value)} />
             </Form.Group>
 
             <div className='button'>
               <div id='wrongIDorPass'></div>
-              <Button variant="success" className='submitbtn' type="submit">Update Profile</Button>{' '}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Button variant="primary" onClick={goToDashboard}>Dashboard</Button>{' '}
+              <Button variant="success" className='submitbtn' type="submit">Add Internship</Button>{' '}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Button variant="primary" onClick={goToDashboard}>Dashboard</Button>{' '}
               <br />
-
-
             </div>
           </Form>
           <br />

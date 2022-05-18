@@ -255,10 +255,11 @@ app.post("/addInternship", (req, res) => {
   const eligible_branches = req.body.eligible_branches;
   const experience_required = req.body.experience_required;
   const date_posted = req.body.date_posted;
+  const last_date_to_apply = req.body.last_date_to_apply;
   const registration_link = req.body.registration_link;
 
-  db.query("INSERT INTO `Internship` (`internship_id`, `company_name`, `position`, `eligible_batches`, `eligible_branches`, `experience_required`, `date_posted`, `registration_link`) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)", 
-  [company_name, position, eligible_batches, eligible_branches, experience_required, date_posted, registration_link],
+  db.query("INSERT INTO `Internship` (`internship_id`, `company_name`, `position`, `eligible_batches`, `eligible_branches`, `experience_required`, `date_posted`, `last_date_to_apply`, `registration_link`) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?)", 
+  [company_name, position, eligible_batches, eligible_branches, experience_required, date_posted, last_date_to_apply, registration_link],
   (err, result) => {
     if(err) {
       console.log(err);
@@ -274,7 +275,7 @@ app.post("/addInternship", (req, res) => {
 app.get("/getInternships/:filter/:val", (req, res) => {
   console.log(req.params);
   if(req.params.filter == 'all'){
-    db.query("SELECT * FROM Internship", (err, result) => {
+    db.query("SELECT * FROM Internship WHERE CURRENT_DATE<=last_date_to_apply;", (err, result) => {
       if(err) {
         console.log(err);
       } else {
@@ -284,8 +285,7 @@ app.get("/getInternships/:filter/:val", (req, res) => {
     );
   }
   else {
-    let query = "SELECT * FROM Internship WHERE " + req.params.filter + " LIKE '%" + req.params.val + "%'";
-    console.log(query);
+    let query = "SELECT * FROM Internship WHERE  WHERE CURRENT_DATE<=last_date_to_apply AND " + req.params.filter + " LIKE '%" + req.params.val + "%'";
     db.query(query, (err, result) => {
       if(err) {
         console.log(err);
@@ -296,10 +296,6 @@ app.get("/getInternships/:filter/:val", (req, res) => {
   }
   
 });
-
-
-// Filters internship data
-
 
 
 
@@ -313,10 +309,11 @@ app.post("/addJob", (req, res) => {
   const eligible_branches = req.body.eligible_branches;
   const experience_required = req.body.experience_required;
   const date_posted = req.body.date_posted;
+  const last_date_to_apply = req.body.last_date_to_apply;
   const registration_link = req.body.registration_link;
 
-  db.query("INSERT INTO `Job` (`job_id`, `company_name`, `position`, `eligible_batches`, `eligible_branches`, `experience_required`, `date_posted`, `registration_link`) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)", 
-  [company_name, position, eligible_batches, eligible_branches, experience_required, date_posted, registration_link],
+  db.query("INSERT INTO `Job` (`job_id`, `company_name`, `position`, `eligible_batches`, `eligible_branches`, `experience_required`, `date_posted`, `last_date_to_apply`, `registration_link`) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?)", 
+  [company_name, position, eligible_batches, eligible_branches, experience_required, date_posted, last_date_to_apply,registration_link],
   (err, result) => {
     if(err) {
       console.log(err);
@@ -330,10 +327,9 @@ app.post("/addJob", (req, res) => {
 
 // Everyone reads Job data
 app.get("/getJobs/:filter/:val", (req, res) => {
-  console.log(req.params);
   if(req.params.filter=='all')
   {
-    db.query("SELECT * FROM Job", (err, result) => {
+    db.query("SELECT * FROM Job WHERE CURRENT_DATE<=last_date_to_apply;", (err, result) => {
       if(err) {
         console.log(err);
       } else {
@@ -343,8 +339,7 @@ app.get("/getJobs/:filter/:val", (req, res) => {
   }
 
   else {
-    let query = "SELECT * FROM Job WHERE " + req.params.filter + " LIKE '%" + req.params.val + "%'";
-    console.log(query);
+    let query = "SELECT * FROM Job WHERE CURRENT_DATE<=last_date_to_apply AND " + req.params.filter + " LIKE '%" + req.params.val + "%'";
     db.query(query, (err, result) => {
       if(err) {
         console.log(err);
@@ -419,9 +414,8 @@ app.post("/addEvent", (req, res) => {
 
 // Everyone reads Event data
 app.get("/getEvents/:filter/:val", (req, res) => {
-  console.log(req.params);
   if(req.params.filter=='all') {
-    db.query("SELECT * FROM Events", (err, result) => {
+    db.query("SELECT * FROM Events WHERE CURRENT_DATE<=date_of_event;", (err, result) => {
       if(err) {
         console.log(err);
       } else {
@@ -431,8 +425,7 @@ app.get("/getEvents/:filter/:val", (req, res) => {
   }
 
   else {
-    let query = "SELECT * FROM Events WHERE " + req.params.filter + " LIKE '%" + req.params.val + "%'";
-    console.log(query);
+    let query = "SELECT * FROM Events WHERE CURRENT_DATE<=date_of_event AND " + req.params.filter + " LIKE '%" + req.params.val + "%'";
     db.query(query, (err, result) => {
       if(err) {
         console.log(err);
@@ -564,7 +557,7 @@ app.post("/askDoubt", (req, res) => {
     to: recieverEmailId,
     cc: senderEmailId,
     subject: 'Doubt regarding ' + subject,
-    text: 'Hi ' + recieverName + ',\n' + 'Student named ' + senderName + ' has doubt.\n\n\n' + 'Doubt : ' + doubt + '\n\n\n You can reply to current email thread. \n\nNote: While replying please copy the email ID in cc and add it to cc of your reply. \n\nThank you for considering.\n\n Yours Sincerely, \nAlumni Portal of KIT'
+    text: 'Hi ' + recieverName + ',\n\n' + 'Student named ' + senderName + ' has doubt.\n\n\n' + 'Doubt : ' + doubt + '\n\n\n You can reply to current email thread. \n\n\nNote: While replying please copy the email ID in cc and add it to cc of your reply. \n\n\nThank you for considering.\n\n\n Yours Sincerely, \nAlumni Portal of KIT'
   };
 
   transporter.sendMail(mailOptions, function(error, info){
