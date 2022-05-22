@@ -48,3 +48,12 @@ b{
       color: #bda2a2;
       background-size: cover;
   }
+
+  #navcolor {
+    font-weight: bold;
+    margin-top: 10px;
+  }
+
+  #singleLine {
+    margin-top: 10px;
+  }

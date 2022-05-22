@@ -37,7 +37,9 @@ function StudentDashboard() {
                       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                       <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
-                          <Nav.Link href="/#"><b>Chat System</b> </Nav.Link>
+                        <NavDropdown title="Chat System" id="collasible-nav-dropdown" id='navcolor'>
+                          <NavDropdown.Item href="https://join.slack.com/t/alumniportalkit/shared_invite/zt-197wj1kbn-5zIkzgdL~DC9Ho0Z5c2oRQ">Join Slack Channel</NavDropdown.Item>
+                        </NavDropdown>
                           <Nav.Link href="/viewAlumni"><b>Search Alumni</b> </Nav.Link>
                           <Nav.Link href="/viewInternships"><b>Internship Opportunities</b> </Nav.Link>
                           <Nav.Link href="/viewJobs"><b>Job Opportunities</b> </Nav.Link>
@@ -45,7 +47,7 @@ function StudentDashboard() {
                         </Nav>
                         <Nav>
                           <Nav.Link href="/updateStudentProfile"><b>My Profile</b> </Nav.Link>
-                          <Nav.Link onClick={logout}><b>Logout</b> </Nav.Link>
+                          <Nav.Link id='singleLine' onClick={logout}><b>Logout</b> </Nav.Link>
                         </Nav>
                       </Navbar.Collapse>
                     </Container>
